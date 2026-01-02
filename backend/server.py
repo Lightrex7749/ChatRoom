@@ -257,6 +257,7 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
             msg_type = message_data.get("type")
 
             if msg_type == "send-message":
+                logger.info(f"Processing send-message: {message_data}")
                 # Save message to DB
                 message = Message(
                     from_user_id=message_data["from_user_id"],
@@ -265,15 +266,22 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
                     message=message_data["message"]
                 )
                 if db is not None:
-                    await db.messages.insert_one(message.model_dump())
+                    try:
+                        await db.messages.insert_one(message.model_dump())
+                        logger.info(f"Message saved to DB: {message.id}")
+                    except Exception as e:
+                        logger.error(f"Error saving message to DB: {e}")
                 
                 # Send to recipient
+                msg_dict = message.model_dump()
+                logger.info(f"Sending message to recipient {message_data['to_user_id']}: {msg_dict}")
                 receive_message = {
                     "type": "receive-message",
-                    "message": message.model_dump()
+                    "message": msg_dict
                 }
                 await manager.send_personal_message(receive_message, message_data["to_user_id"])
                 # Confirm to sender
+                logger.info(f"Sending message confirmation to sender {message_data['from_user_id']}")
                 await manager.send_personal_message(receive_message, message_data["from_user_id"])
 
             elif msg_type == "typing":

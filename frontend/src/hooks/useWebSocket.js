@@ -25,42 +25,48 @@ export const useWebSocket = (user) => {
       };
 
       ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        
-        switch (data.type) {
-          case "users-update":
-            setUsers(data.users);
-            break;
-            
-          case "receive-message":
-            setMessages(prev => [...prev, data.message]);
-            break;
-            
-          case "typing":
-            setTyping(prev => ({ ...prev, [data.from_user_id]: true }));
-            break;
-            
-          case "stop-typing":
-            setTyping(prev => {
-              const newTyping = { ...prev };
-              delete newTyping[data.from_user_id];
-              return newTyping;
-            });
-            break;
-            
-          case "incoming-call":
-            setIncomingCall({
-              from_user_id: data.from_user_id,
-              from_username: data.from_username
-            });
-            break;
-            
-          default:
-            // Pass to WebRTC handler
-            if (messageHandlersRef.current[data.type]) {
-              messageHandlersRef.current[data.type](data);
-            }
-            break;
+        try {
+          const data = JSON.parse(event.data);
+          console.log("WebSocket message received:", data);
+          
+          switch (data.type) {
+            case "users-update":
+              setUsers(data.users);
+              break;
+              
+            case "receive-message":
+              console.log("Message received:", data.message);
+              setMessages(prev => [...prev, data.message]);
+              break;
+              
+            case "typing":
+              setTyping(prev => ({ ...prev, [data.from_user_id]: true }));
+              break;
+              
+            case "stop-typing":
+              setTyping(prev => {
+                const newTyping = { ...prev };
+                delete newTyping[data.from_user_id];
+                return newTyping;
+              });
+              break;
+              
+            case "incoming-call":
+              setIncomingCall({
+                from_user_id: data.from_user_id,
+                from_username: data.from_username
+              });
+              break;
+              
+            default:
+              // Pass to WebRTC handler
+              if (messageHandlersRef.current[data.type]) {
+                messageHandlersRef.current[data.type](data);
+              }
+              break;
+          }
+        } catch (error) {
+          console.error("Error parsing WebSocket message:", error);
         }
       };
 
