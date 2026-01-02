@@ -84,10 +84,7 @@ export const ChatScreen = ({ user, onLeave }) => {
               <ChatWindow
                 currentUser={user}
                 selectedUser={selectedUser}
-                messages={messages.filter(
-                  m => (m.from_user_id === user.id && m.to_user_id === selectedUser.id) ||
-                       (m.from_user_id === selectedUser.id && m.to_user_id === user.id)
-                )}
+                messages={messages}
                 onSendMessage={sendMessage}
                 typing={typing}
                 onStartCall={handleStartCall}

@@ -145,8 +145,8 @@ async def get_messages(user1_id: str, user2_id: str):
             {"_id": 0}
         ).sort("timestamp", 1).to_list(1000)
         return messages
-    except Exception as e:
-        logger.error(f"Error fetching messages: {e}")
+    except Exception:
+        # Gracefully return empty list if DB unavailable
         return []
 
 @api_router.post("/messages", response_model=Message)
@@ -257,31 +257,28 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
             msg_type = message_data.get("type")
 
             if msg_type == "send-message":
-                logger.info(f"Processing send-message: {message_data}")
-                # Save message to DB
+                # Create message object
                 message = Message(
                     from_user_id=message_data["from_user_id"],
                     from_username=message_data["from_username"],
                     to_user_id=message_data["to_user_id"],
                     message=message_data["message"]
                 )
+                # Save to DB asynchronously (don't wait - fire and forget)
                 if db is not None:
                     try:
-                        await db.messages.insert_one(message.model_dump())
-                        logger.info(f"Message saved to DB: {message.id}")
-                    except Exception as e:
-                        logger.error(f"Error saving message to DB: {e}")
+                        asyncio.create_task(db.messages.insert_one(message.model_dump()))
+                    except Exception:
+                        pass
                 
-                # Send to recipient
+                # Send to recipient immediately without waiting for DB
                 msg_dict = message.model_dump()
-                logger.info(f"Sending message to recipient {message_data['to_user_id']}: {msg_dict}")
                 receive_message = {
                     "type": "receive-message",
                     "message": msg_dict
                 }
                 await manager.send_personal_message(receive_message, message_data["to_user_id"])
                 # Confirm to sender
-                logger.info(f"Sending message confirmation to sender {message_data['from_user_id']}")
                 await manager.send_personal_message(receive_message, message_data["from_user_id"])
 
             elif msg_type == "typing":

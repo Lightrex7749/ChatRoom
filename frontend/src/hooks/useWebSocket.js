@@ -27,7 +27,6 @@ export const useWebSocket = (user) => {
       ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
-          console.log("WebSocket message received:", data);
           
           switch (data.type) {
             case "users-update":
@@ -35,7 +34,6 @@ export const useWebSocket = (user) => {
               break;
               
             case "receive-message":
-              console.log("Message received:", data.message);
               setMessages(prev => [...prev, data.message]);
               break;
               
@@ -66,7 +64,7 @@ export const useWebSocket = (user) => {
               break;
           }
         } catch (error) {
-          console.error("Error parsing WebSocket message:", error);
+          // Silent fail for non-critical parsing errors
         }
       };
 

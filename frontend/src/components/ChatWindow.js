@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Video, Phone, MoreVertical, Smile } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,15 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+
+  // Memoize filtered messages for better performance
+  const filteredMessages = useMemo(() => 
+    messages.filter(
+      m => (m.from_user_id === currentUser.id && m.to_user_id === selectedUser.id) ||
+           (m.from_user_id === selectedUser.id && m.to_user_id === currentUser.id)
+    ),
+    [messages, currentUser.id, selectedUser.id]
+  );
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -125,7 +134,7 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4" data-testid="messages-container">
         <AnimatePresence>
-          {messages.map((msg, index) => {
+          {filteredMessages.map((msg, index) => {
             const isOwn = msg.from_user_id === currentUser.id;
             return (
               <motion.div
