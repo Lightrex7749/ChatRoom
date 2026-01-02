@@ -59,12 +59,12 @@ export const ChatScreen = ({ user, onLeave }) => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       <Header user={user} onLeave={onLeave} isConnected={isConnected} />
       
-      <div className="flex-1 flex overflow-hidden flex-col lg:flex-row">
+      <div className="flex-1 flex overflow-hidden flex-col lg:flex-row gap-0">
         {/* User List Sidebar - Hidden on mobile, visible on lg screens */}
-        <div className="hidden lg:block w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="hidden lg:flex lg:w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col">
           <UserList 
             users={users.filter(u => u.id !== user.id)}
             currentUser={user}

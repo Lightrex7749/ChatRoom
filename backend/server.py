@@ -134,16 +134,20 @@ async def get_messages(user1_id: str, user2_id: str):
     if db is None:
         return []
     
-    messages = await db.messages.find(
-        {
-            "$or": [
-                {"from_user_id": user1_id, "to_user_id": user2_id},
-                {"from_user_id": user2_id, "to_user_id": user1_id}
-            ]
-        },
-        {"_id": 0}
-    ).sort("timestamp", 1).to_list(1000)
-    return messages
+    try:
+        messages = await db.messages.find(
+            {
+                "$or": [
+                    {"from_user_id": user1_id, "to_user_id": user2_id},
+                    {"from_user_id": user2_id, "to_user_id": user1_id}
+                ]
+            },
+            {"_id": 0}
+        ).sort("timestamp", 1).to_list(1000)
+        return messages
+    except Exception as e:
+        logger.error(f"Error fetching messages: {e}")
+        return []
 
 @api_router.post("/messages", response_model=Message)
 async def create_message(message_input: MessageCreate):
@@ -221,11 +225,15 @@ async def get_unread_messages(user_id: str):
     if db is None:
         return []
     
-    unread = await db.messages.find({
-        "to_user_id": user_id,
-        "read": False
-    }, {"_id": 0}).sort("timestamp", 1).to_list(1000)
-    return unread
+    try:
+        unread = await db.messages.find({
+            "to_user_id": user_id,
+            "read": False
+        }, {"_id": 0}).sort("timestamp", 1).to_list(1000)
+        return unread
+    except Exception as e:
+        logger.error(f"Error fetching unread messages: {e}")
+        return []
 
 @api_router.post("/messages/{message_id}/read")
 async def mark_message_read(message_id: str):

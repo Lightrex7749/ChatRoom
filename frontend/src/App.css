@@ -117,6 +117,15 @@ h1, h2, h3 {
   input, textarea, select {
     font-size: 16px; /* Prevents auto-zoom on iOS */
   }
+  
+  /* Remove scrollbar on mobile for cleaner look */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+  }
 }
 
 /* iPhone notch safe area support */
@@ -124,6 +133,7 @@ h1, h2, h3 {
   body {
     padding-left: max(12px, env(safe-area-inset-left));
     padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
 }
 
@@ -138,5 +148,46 @@ h1, h2, h3 {
 @media (min-width: 1024px) {
   .App {
     font-size: 16px;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+/* Input focus improvements */
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Better button feedback */
+button {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection issues on mobile */
+.user-select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile menu/sidebar animations */
+@media (max-width: 1024px) {
+  .sidebar-animate {
+    animation: slideInFromLeft 0.3s ease-out;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

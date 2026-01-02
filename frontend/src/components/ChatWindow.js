@@ -71,13 +71,13 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
+    <div className="flex-1 flex flex-col bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm h-screen lg:h-auto">
       {/* Chat Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+      <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex-shrink-0">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="relative">
-              <Avatar className="h-10 w-10">
+          <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+            <div className="relative flex-shrink-0">
+              <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                 <AvatarFallback className="bg-gradient-to-br from-blue-400 to-purple-500">
                   {selectedUser.username[0].toUpperCase()}
                 </AvatarFallback>
@@ -169,13 +169,13 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+      <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex-shrink-0">
         <form onSubmit={handleSend} className="flex items-center space-x-2">
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0 hidden sm:flex"
           >
             <Smile className="w-5 h-5 text-gray-500" />
           </Button>
@@ -185,16 +185,17 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
             placeholder="Type a message..."
             value={inputMessage}
             onChange={handleInputChange}
-            className="flex-1 rounded-full border-2 focus:border-blue-500 dark:bg-gray-700/50"
+            onBlur={handleStopTyping}
+            className="flex-1 rounded-full border-2 px-4 py-2 sm:py-3 text-sm sm:text-base focus:border-blue-500 dark:bg-gray-700/50"
           />
           <Button
             data-testid="send-message-button"
             type="submit"
             disabled={!inputMessage.trim()}
-            className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 flex-shrink-0"
             size="icon"
           >
-            <Send className="w-5 h-5" />
+            <Send className="w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
         </form>
       </div>
