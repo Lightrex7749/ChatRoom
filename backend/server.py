@@ -15,6 +15,7 @@ from passlib.context import CryptContext
 import asyncio
 import shutil
 import mimetypes
+from postgres_db import PostgresDB
 
 import certifi
 
@@ -170,29 +171,68 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
-db_name = os.environ.get('DB_NAME', 'test_database')
+# Database configuration
+database_url = os.environ.get('DATABASE_URL', '')  # PostgreSQL URL from Render
+mongo_url = os.environ.get('MONGO_URL', '')  # MongoDB URL (legacy)
+db_name = os.environ.get('DB_NAME', 'chatroom_db')
 
-# Force in-memory for stability in this environment if Mongo fails
+# Initialize database
 client = None
 db = None
+postgres_db = None
 
-try:
-    # Try connecting, but with short timeout
-    client = AsyncIOMotorClient(
-        mongo_url, 
-        serverSelectionTimeoutMS=2000,
-        tlsCAFile=certifi.where(),
-        tlsAllowInvalidCertificates=True
-    )
-    # Trigger a command to verify connection
-    # Since we can't easily await here in top-level, we rely on lazy connection
-    # But if we want to fail fast to switch to InMemory:
-    db = client[db_name]
-    logger.info("MongoDB client initialized (lazy connection)")
-except Exception as e:
-    logger.warning(f"MongoDB init error: {e}. Switching to InMemoryDB.")
+async def init_db():
+    """Initialize database connection on startup"""
+    global db, postgres_db
+    
+    # Try PostgreSQL first
+    if database_url:
+        try:
+            logger.info("Attempting PostgreSQL connection...")
+            postgres_db = PostgresDB(database_url)
+            await postgres_db.connect()
+            db = postgres_db
+            logger.info("✅ PostgreSQL connected successfully")
+            return
+        except Exception as e:
+            logger.error(f"PostgreSQL connection failed: {e}")
+    
+    # Try MongoDB if no PostgreSQL
+    if mongo_url:
+        try:
+            logger.info("Attempting MongoDB connection...")
+            global client
+            client = AsyncIOMotorClient(
+  Startup and shutdown events
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await close_db()
+
+#               mongo_url, 
+                serverSelectionTimeoutMS=2000,
+                tlsCAFile=certifi.where(),
+                tlsAllowInvalidCertificates=True
+            )
+            db = client[db_name]
+            logger.info("✅ MongoDB connected")
+            return
+        except Exception as e:
+            logger.warning(f"MongoDB connection failed: {e}")
+    
+    # Fallback to InMemoryDB
+    logger.warning("⚠️ Using InMemoryDB (data will be lost on restart)")
     db = InMemoryDB()
+
+async def close_db():
+    """Close database connection on shutdown"""
+    if postgres_db:
+        await postgres_db.close()
+    if client:
+        client.close()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
