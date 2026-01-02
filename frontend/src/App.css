@@ -181,13 +181,176 @@ button {
   }
 }
 
-@keyframes slideInFromLeft {
+@keyframes slideInFromRight {
   from {
-    transform: translateX(-100%);
     opacity: 0;
+    transform: translateX(20px);
   }
   to {
+    opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
     opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Improved message bubble styling */
+.message-bubble {
+  border-radius: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 85%;
+  padding: 10px 16px;
+  line-height: 1.4;
+}
+
+.message-bubble.own {
+  border-bottom-right-radius: 4px;
+}
+
+.message-bubble.other {
+  border-bottom-left-radius: 4px;
+}
+
+/* Smooth input transitions */
+input, textarea {
+  transition: all 200ms ease;
+}
+
+input:hover, textarea:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+input:focus, textarea:focus {
+  border-color: rgb(59, 130, 246);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .App {
+    min-height: 100dvh;
+  }
+  
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+  }
+  
+  /* Tighter spacing on mobile */
+  .message-bubble {
+    max-width: 90%;
+  }
+}
+
+/* iPhone notch safe area support */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .App {
+    font-size: 15px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .App {
+    font-size: 16px;
+  }
+}
+
+/* Better focus states */
+:focus-visible {
+  outline: 2px solid rgb(59, 130, 246);
+  outline-offset: 2px;
+}
+
+/* Disable outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+/* Remove transition for animations */
+.animate-*, [class*="animate-"] {
+  transition: none;
+}
+
+/* Better button feedback */
+button {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent text selection issues on mobile */
+.user-select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile menu/sidebar animations */
+@media (max-width: 1024px) {
+  .sidebar-animate {
+    animation: slideInFromLeft 0.3s ease-out;
+  }
+}
+
+/* Loading skeleton animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
