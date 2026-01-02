@@ -203,16 +203,7 @@ async def init_db():
             logger.info("Attempting MongoDB connection...")
             global client
             client = AsyncIOMotorClient(
-  Startup and shutdown events
-@app.on_event("startup")
-async def startup_event():
-    await init_db()
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    await close_db()
-
-#               mongo_url, 
+                mongo_url, 
                 serverSelectionTimeoutMS=2000,
                 tlsCAFile=certifi.where(),
                 tlsAllowInvalidCertificates=True
@@ -241,6 +232,15 @@ UPLOAD_DIR = ROOT_DIR / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 app = FastAPI()
+
+# Startup and shutdown events
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await close_db()
 
 # Mount static files for serving uploaded files
 app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
