@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Video, Phone, MoreVertical, Smile } from "lucide-react";
+import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { format } from "date-fns";
 
-export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall }) => {
+export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage }) => {
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
@@ -98,13 +98,23 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                 {selectedUser.username}
               </h3>
               {typing[selectedUser.id] && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-xs text-blue-500"
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center space-x-1"
                 >
-                  typing...
-                </motion.p>
+                  <span className="text-xs text-blue-500 font-medium">typing</span>
+                  <div className="flex space-x-1">
+                    {[0, 1, 2].map((i) => (
+                      <motion.div
+                        key={i}
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1 }}
+                        className="w-1.5 h-1.5 bg-blue-500 rounded-full"
+                      />
+                    ))}
+                  </div>
+                </motion.div>
               )}
             </div>
           </div>
@@ -155,19 +165,41 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                       </AvatarFallback>
                     </Avatar>
                   )}
-                  <div>
-                    <div className={`px-4 py-2 rounded-2xl ${
-                      isOwn
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-sm"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-bl-sm"
-                    }`}>
-                      <p className="text-sm break-words" data-testid={`message-${index}`}>{msg.message}</p>
-                    </div>
-                    <p className={`text-xs text-gray-500 dark:text-gray-400 mt-1 ${
-                      isOwn ? "text-right" : "text-left"
+                  <div className="group">
+                    {msg.deleted ? (
+                      <div className="px-4 py-2 rounded-2xl bg-gray-100 dark:bg-gray-800 italic text-gray-500 dark:text-gray-400">
+                        <p className="text-sm">Message deleted</p>
+                      </div>
+                    ) : (
+                      <div className={`px-4 py-2 rounded-2xl relative ${
+                        isOwn
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-sm"
+                          : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-bl-sm"
+                      }`}>
+                        <p className="text-sm break-words" data-testid={`message-${index}`}>{msg.message}</p>
+                        {isOwn && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => onDeleteMessage(msg.id, selectedUser.id)}
+                            className="opacity-0 group-hover:opacity-100 absolute -right-8 top-0 h-6 w-6 p-0 text-xs transition-opacity"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                    <div className={`text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1 ${
+                      isOwn ? "justify-end" : "justify-start"
                     }`}>
                       {format(new Date(msg.timestamp), "HH:mm")}
-                    </p>
+                      {isOwn && msg.read && (
+                        <CheckCheck className="w-3 h-3 text-blue-400" />
+                      )}
+                      {isOwn && !msg.read && (
+                        <Check className="w-3 h-3 text-gray-400" />
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>

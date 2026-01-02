@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import { useWebRTC } from "@/hooks/useWebRTC";
 import UserList from "@/components/UserList";
@@ -12,7 +13,7 @@ import { motion } from "framer-motion";
 export const ChatScreen = ({ user, onLeave }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { users, messages, sendMessage, typing, incomingCall, acceptCall: wsAcceptCall, rejectCall, isConnected, registerMessageHandler } = useWebSocket(user);
+  const { users, messages, sendMessage, typing, incomingCall, acceptCall: wsAcceptCall, rejectCall, isConnected, registerMessageHandler, deleteMessage } = useWebSocket(user);
   const { 
     localStream, 
     remoteStream, 
@@ -48,6 +49,11 @@ export const ChatScreen = ({ user, onLeave }) => {
     if (selectedUser) {
       await startCall(selectedUser.id);
     }
+  };
+
+  const handleDeleteMessage = (messageId, toUserId) => {
+    deleteMessage(messageId, toUserId);
+    toast.success("Message deleted", { duration: 2000 });
   };
 
   const handleSelectFriend = (friend) => {
@@ -88,6 +94,7 @@ export const ChatScreen = ({ user, onLeave }) => {
                 onSendMessage={sendMessage}
                 typing={typing}
                 onStartCall={handleStartCall}
+                onDeleteMessage={handleDeleteMessage}
               />
             </motion.div>
           ) : (

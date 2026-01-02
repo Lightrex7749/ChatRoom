@@ -101,6 +101,8 @@ class Message(BaseModel):
     message: str
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     read: bool = False
+    deleted: bool = False
+    edited_at: str = None
 
 class MessageCreate(BaseModel):
     from_user_id: str
@@ -246,6 +248,25 @@ async def mark_message_read(message_id: str):
         return {"status": "success"}
     return {"status": "success"}
 
+@api_router.delete("/messages/{message_id}")
+async def delete_message(message_id: str):
+    """Delete a message (soft delete)"""
+    if db is not None:
+        await db.messages.update_one(
+            {"id": message_id},
+            {"$set": {"deleted": True}}
+        )
+    return {"status": "success"}
+
+@api_router.put("/messages/{message_id}")
+async def edit_message(message_id: str, update_data: dict):
+    """Edit a message"""
+    if db is not None:
+        await db.messages.update_one(
+            {"id": message_id},
+            {"$set": {"message": update_data.get("message"), "edited_at": datetime.now(timezone.utc).isoformat()}}
+        )
+    return {"status": "success"}
 # WebSocket Route
 @app.websocket("/api/ws/{user_id}/{username}")
 async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
@@ -295,6 +316,36 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
                     "from_user_id": message_data["from_user_id"]
                 }
                 await manager.send_personal_message(stop_typing_msg, message_data["to_user_id"])
+
+            elif msg_type == "message-read":
+                # Mark message as read and notify sender
+                if db is not None:
+                    asyncio.create_task(db.messages.update_one(
+                        {"id": message_data["message_id"]},
+                        {"$set": {"read": True}}
+                    ))
+                # Notify the sender that message was read
+                read_msg = {
+                    "type": "message-read",
+                    "message_id": message_data["message_id"],
+                    "read_by": message_data["from_user_id"]
+                }
+                await manager.send_personal_message(read_msg, message_data["to_user_id"])
+
+            elif msg_type == "delete-message":
+                # Delete message
+                if db is not None:
+                    asyncio.create_task(db.messages.update_one(
+                        {"id": message_data["message_id"]},
+                        {"$set": {"deleted": True}}
+                    ))
+                # Notify both users
+                delete_msg = {
+                    "type": "delete-message",
+                    "message_id": message_data["message_id"]
+                }
+                await manager.send_personal_message(delete_msg, message_data["to_user_id"])
+                await manager.send_personal_message(delete_msg, message_data["from_user_id"])
 
             # WebRTC Signaling
             elif msg_type == "call-user":

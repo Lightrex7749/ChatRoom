@@ -49,6 +49,22 @@ export const useWebSocket = (user) => {
               });
               break;
               
+            case "message-read":
+              setMessages(prev => 
+                prev.map(m => 
+                  m.id === data.message_id ? { ...m, read: true } : m
+                )
+              );
+              break;
+              
+            case "delete-message":
+              setMessages(prev => 
+                prev.map(m => 
+                  m.id === data.message_id ? { ...m, deleted: true } : m
+                )
+              );
+              break;
+              
             case "incoming-call":
               setIncomingCall({
                 from_user_id: data.from_user_id,
@@ -129,6 +145,24 @@ export const useWebSocket = (user) => {
     setIncomingCall(null);
   }, [sendMessage, user]);
 
+  const deleteMessage = useCallback((messageId, toUserId) => {
+    sendMessage({
+      type: "delete-message",
+      message_id: messageId,
+      from_user_id: user.id,
+      to_user_id: toUserId
+    });
+  }, [sendMessage, user]);
+
+  const markAsRead = useCallback((messageId, fromUserId) => {
+    sendMessage({
+      type: "message-read",
+      message_id: messageId,
+      from_user_id: user.id,
+      to_user_id: fromUserId
+    });
+  }, [sendMessage, user]);
+
   return {
     isConnected,
     users,
@@ -138,6 +172,8 @@ export const useWebSocket = (user) => {
     sendMessage,
     registerMessageHandler,
     acceptCall,
-    rejectCall
+    rejectCall,
+    deleteMessage,
+    markAsRead
   };
 };

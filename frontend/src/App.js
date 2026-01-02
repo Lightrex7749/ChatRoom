@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Toaster } from "sonner";
 import "@/App.css";
 import JoinScreen from "@/components/JoinScreen";
 import ChatScreen from "@/components/ChatScreen";
@@ -39,6 +40,7 @@ function App() {
         ) : (
           <ChatScreen user={user} onLeave={handleLeave} />
         )}
+        <Toaster position="top-right" richColors />
       </div>
     </ThemeProvider>
   );

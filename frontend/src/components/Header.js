@@ -2,10 +2,22 @@ import { LogOut, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import OfflineMessages from "@/components/OfflineMessages";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export const Header = ({ user, onLeave, isConnected }) => {
   const { theme, toggleTheme } = useTheme();
+  const [lastConnectedState, setLastConnectedState] = useState(isConnected);
+
+  useEffect(() => {
+    if (isConnected && !lastConnectedState) {
+      toast.success("Connected!", { duration: 2000 });
+    } else if (!isConnected && lastConnectedState) {
+      toast.error("Disconnected", { duration: 2000 });
+    }
+    setLastConnectedState(isConnected);
+  }, [isConnected, lastConnectedState]);
 
   return (
     <header className="border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-white via-white/95 to-white/90 dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-800/90 backdrop-blur-md shadow-sm" data-testid="app-header">
