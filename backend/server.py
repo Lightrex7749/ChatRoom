@@ -33,6 +33,16 @@ except Exception as e:
     db = None
 
 app = FastAPI()
+
+# Add CORS middleware BEFORE including routers
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(',') if os.environ.get('CORS_ORIGINS') else ["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 api_router = APIRouter(prefix="/api")
 
 # WebSocket Connection Manager
@@ -335,15 +345,8 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
         manager.disconnect(user_id)
         await manager.broadcast_users_update()
 
-app.include_router(api_router)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.include_router(api_router)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
