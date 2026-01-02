@@ -69,16 +69,19 @@ export const ChatScreen = ({ user, onLeave }) => {
       <Header user={user} onLeave={onLeave} isConnected={isConnected} />
       
       <div className="flex-1 flex overflow-hidden flex-col lg:flex-row gap-0">
-        {/* User List Sidebar - Hidden on mobile, visible on lg screens */}
-        <div className="hidden lg:flex lg:w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col">
+        {/* Friends Panel - Always visible on mobile, sidebar on desktop */}
+        <div className={`${selectedUser ? 'hidden lg:flex' : 'flex'} w-full lg:w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col`}>
           <FriendsPanel 
             user={user}
-            onSelectFriend={handleSelectFriend}
+            onSelectFriend={(friend) => {
+              handleSelectFriend(friend);
+              // Mobile will show chat after selecting
+            }}
           />
         </div>
 
         {/* Chat Window */}
-        <div className="flex-1 flex flex-col relative">
+        <div className={`${selectedUser ? 'flex' : 'hidden lg:flex'} flex-1 flex-col relative`}>
           {selectedUser ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -93,6 +96,7 @@ export const ChatScreen = ({ user, onLeave }) => {
                 typing={typing}
                 onStartCall={handleStartCall}
                 onDeleteMessage={handleDeleteMessage}
+                onBack={() => setSelectedUser(null)}
               />
             </motion.div>
           ) : (

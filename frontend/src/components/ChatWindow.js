@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X } from "lucide-react";
+import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -9,7 +9,7 @@ import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
-export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage }) => {
+export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage, onBack }) => {
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -154,6 +154,17 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
       <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+            {/* Back Button - Mobile Only */}
+            {onBack && (
+              <Button
+                onClick={onBack}
+                variant="ghost"
+                size="icon"
+                className="lg:hidden rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+            )}
             <div className="relative flex-shrink-0">
               <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                 <AvatarFallback className="bg-gradient-to-br from-blue-400 to-purple-500">
