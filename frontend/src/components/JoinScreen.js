@@ -38,23 +38,23 @@ export const JoinScreen = ({ onJoin }) => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full max-w-md"
       >
-        <div className="glass rounded-3xl shadow-2xl p-8 space-y-8">
+    <div className="glass rounded-3xl shadow-2xl p-6 sm:p-8 space-y-8">
           {/* Logo & Title */}
           <div className="text-center space-y-4">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg"
+              className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg"
             >
-              <Video className="w-10 h-10 text-white" />
+              <Video className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </motion.div>
             
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             >
               ConnectHub
             </motion.h1>
@@ -63,7 +63,7 @@ export const JoinScreen = ({ onJoin }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-base text-gray-600 dark:text-gray-300"
+              className="text-sm sm:text-base text-gray-600 dark:text-gray-300 px-2"
             >
               Stay connected with friends. Send offline messages anytime
             </motion.p>

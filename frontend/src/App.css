@@ -102,3 +102,41 @@ h1, h2, h3 {
 .pulse-ring {
   animation: pulse-ring 1.5s infinite;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .App {
+    min-height: 100dvh; /* Use dynamic viewport height for mobile */
+  }
+  
+  /* Prevent zoom on input focus (mobile) */
+  input, textarea, select {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+  }
+}
+
+/* iPhone notch safe area support */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .App {
+    font-size: 15px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .App {
+    font-size: 16px;
+  }
+}

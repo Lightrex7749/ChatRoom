@@ -62,14 +62,16 @@ export const ChatScreen = ({ user, onLeave }) => {
     <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <Header user={user} onLeave={onLeave} isConnected={isConnected} />
       
-      <div className="flex-1 flex overflow-hidden">
-        {/* User List Sidebar */}
-        <UserList 
-          users={users.filter(u => u.id !== user.id)}
-          currentUser={user}
-          selectedUser={selectedUser}
-          onSelectUser={setSelectedUser}
-        />
+      <div className="flex-1 flex overflow-hidden flex-col lg:flex-row">
+        {/* User List Sidebar - Hidden on mobile, visible on lg screens */}
+        <div className="hidden lg:block w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <UserList 
+            users={users.filter(u => u.id !== user.id)}
+            currentUser={user}
+            selectedUser={selectedUser}
+            onSelectUser={setSelectedUser}
+          />
+        </div>
 
         {/* Chat Window */}
         <div className="flex-1 flex flex-col relative">
