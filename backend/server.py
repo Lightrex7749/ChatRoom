@@ -1,5 +1,6 @@
-from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, HTTPException, status, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
@@ -10,29 +11,199 @@ from typing import List, Dict, Optional
 import uuid
 from datetime import datetime, timezone
 import json
+from passlib.context import CryptContext
+import asyncio
+import shutil
+import mimetypes
+
+import certifi
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# In-Memory Database for testing/fallback
+class InMemoryDB:
+    def __init__(self):
+        self.data = {
+            "messages": [],
+            "users": [],
+            "friends": [],
+            "friend_requests": []
+        }
+    
+    @property
+    def messages(self):
+        return InMemoryCollection(self.data, "messages")
+    
+    @property
+    def users(self):
+        return InMemoryCollection(self.data, "users")
+    
+    @property
+    def friends(self):
+        return InMemoryCollection(self.data, "friends")
+    
+    @property
+    def friend_requests(self):
+        return InMemoryCollection(self.data, "friend_requests")
+
+class MockUpdateResult:
+    def __init__(self, modified_count):
+        self.modified_count = modified_count
+
+class MockDeleteResult:
+    def __init__(self, deleted_count):
+        self.deleted_count = deleted_count
+
+class InMemoryCollection:
+    def __init__(self, db, collection_name):
+        self.db = db
+        self.name = collection_name
+    
+    async def insert_one(self, doc):
+        self.db[self.name].append(doc)
+        return {"inserted_id": doc.get("id")}
+    
+    async def find_one(self, query):
+        for doc in self.db[self.name]:
+            if all(doc.get(k) == v for k, v in query.items()):
+                return doc
+        return None
+    
+    def find(self, query=None, projection=None):
+        return InMemoryCursor(self.db[self.name], query or {}, projection or {})
+    
+    async def update_one(self, query, update):
+        for doc in self.db[self.name]:
+            if all(doc.get(k) == v for k, v in query.items()):
+                if "$set" in update:
+                    doc.update(update["$set"])
+                return MockUpdateResult(1)
+        return MockUpdateResult(0)
+    
+    async def delete_one(self, query):
+        for i, doc in enumerate(self.db[self.name]):
+            if all(doc.get(k) == v for k, v in query.items()):
+                self.db[self.name].pop(i)
+                return MockDeleteResult(1)
+        return MockDeleteResult(0)
+
+class InMemoryCursor:
+    def __init__(self, collection, query, projection):
+        self.collection = collection
+        self.query = query
+        self.projection = projection
+        self._results = None
+        self._sort_key = None
+        self._sort_dir = 1
+        self._iterator = None
+    
+    def sort(self, key, direction=1):
+        self._sort_key = key
+        self._sort_dir = direction
+        return self
+    
+    def _execute_query(self):
+        if self._results is not None:
+            return
+
+        results = []
+        for doc in self.collection:
+            # Complex filtering logic matching MongoDB query structure minimally
+            match = True
+            for k, v in self.query.items():
+                if k == "$or":
+                    # Handle $or: list of conditions, one must be true
+                    or_match = False
+                    for or_clause in v:
+                        clause_match = True
+                        for k2, v2 in or_clause.items():
+                            if doc.get(k2) != v2:
+                                clause_match = False
+                                break
+                        if clause_match:
+                            or_match = True
+                            break
+                    if not or_match:
+                        match = False
+                        break
+                elif doc.get(k) != v:
+                    match = False
+                    break
+            
+            if match:
+                results.append(doc)
+        
+        if self._sort_key:
+            results.sort(key=lambda x: x.get(self._sort_key, ""), reverse=(self._sort_dir == -1))
+        
+        self._results = results
+
+    async def to_list(self, max_size):
+        self._execute_query()
+        if max_size is None or max_size == 0:
+            return self._results
+        return self._results[:max_size]
+
+    def __aiter__(self):
+        self._execute_query()
+        self._iterator = iter(self._results)
+        return self
+
+    async def __anext__(self):
+        if self._iterator is None:
+            self._execute_query()
+            self._iterator = iter(self._results)
+        
+        try:
+            return next(self._iterator)
+        except StopIteration:
+            raise StopAsyncIteration
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("backend.log"),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 db_name = os.environ.get('DB_NAME', 'test_database')
 
+# Force in-memory for stability in this environment if Mongo fails
+client = None
+db = None
+
 try:
-    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=5000)
+    # Try connecting, but with short timeout
+    client = AsyncIOMotorClient(
+        mongo_url, 
+        serverSelectionTimeoutMS=2000,
+        tlsCAFile=certifi.where(),
+        tlsAllowInvalidCertificates=True
+    )
+    # Trigger a command to verify connection
+    # Since we can't easily await here in top-level, we rely on lazy connection
+    # But if we want to fail fast to switch to InMemory:
     db = client[db_name]
-    logger.info("MongoDB connected successfully")
+    logger.info("MongoDB client initialized (lazy connection)")
 except Exception as e:
-    logger.warning(f"MongoDB connection error: {e}. Running in memory mode.")
-    client = None
-    db = None
+    logger.warning(f"MongoDB init error: {e}. Switching to InMemoryDB.")
+    db = InMemoryDB()
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Create uploads directory
+UPLOAD_DIR = ROOT_DIR / "uploads"
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 app = FastAPI()
+
+# Mount static files for serving uploaded files
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 # Add CORS middleware BEFORE including routers
 app.add_middleware(
@@ -91,6 +262,19 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 # Pydantic Models
+class UserCreate(BaseModel):
+    username: str
+    password: str
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+class User(BaseModel):
+    id: str
+    username: str
+    created_at: str
+
 class Message(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
@@ -102,13 +286,19 @@ class Message(BaseModel):
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     read: bool = False
     deleted: bool = False
-    edited_at: str = None
+    edited_at: str | None = None
+    file_url: str | None = None
+    file_type: str | None = None  # "image", "video", "file"
+    file_name: str | None = None
 
 class MessageCreate(BaseModel):
     from_user_id: str
     from_username: str
     to_user_id: str
     message: str
+    file_url: str | None = None
+    file_type: str | None = None
+    file_name: str | None = None
 
 class Friend(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -123,13 +313,106 @@ class Friend(BaseModel):
 class FriendRequest(BaseModel):
     from_user_id: str
     from_username: str
-    to_user_id: str
+    to_user_id: Optional[str] = None
     to_username: str
+
+# Helper functions
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+def get_file_type(filename: str) -> str:
+    """Determine file type based on extension"""
+    mime_type, _ = mimetypes.guess_type(filename)
+    if mime_type:
+        if mime_type.startswith('image/'):
+            return 'image'
+        elif mime_type.startswith('video/'):
+            return 'video'
+    return 'file'
 
 # REST API Routes
 @api_router.get("/")
 async def root():
     return {"message": "ConnectHub API"}
+
+@api_router.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    """Upload a file and return its URL"""
+    try:
+        # Generate unique filename
+        file_ext = Path(file.filename).suffix
+        unique_filename = f"{uuid.uuid4()}{file_ext}"
+        file_path = UPLOAD_DIR / unique_filename
+        
+        # Save file
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # Get file type
+        file_type = get_file_type(file.filename)
+        
+        return {
+            "file_url": f"/uploads/{unique_filename}",
+            "file_name": file.filename,
+            "file_type": file_type
+        }
+    except Exception as e:
+        logger.error(f"File upload error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/register", response_model=User)
+async def register(user: UserCreate):
+    try:
+        if db is None:
+            raise HTTPException(status_code=503, detail="Database not available")
+        
+        existing_user = await db.users.find_one({"username": user.username})
+        if existing_user:
+            raise HTTPException(status_code=400, detail="Username already registered")
+        
+        user_id = str(uuid.uuid4())
+        hashed_password = get_password_hash(user.password)
+        
+        new_user = {
+            "id": user_id,
+            "username": user.username,
+            "hashed_password": hashed_password,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        
+        await db.users.insert_one(new_user)
+        
+        return User(
+            id=user_id,
+            username=user.username,
+            created_at=new_user["created_at"]
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Registration error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/login", response_model=User)
+async def login(user_in: UserLogin):
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database not available")
+    
+    user = await db.users.find_one({"username": user_in.username})
+    if not user or not verify_password(user_in.password, user["hashed_password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+        )
+    
+    return User(
+        id=user["id"],
+        username=user["username"],
+        created_at=user["created_at"]
+    )
 
 @api_router.get("/messages/{user1_id}/{user2_id}", response_model=List[Message])
 async def get_messages(user1_id: str, user2_id: str):
@@ -163,26 +446,39 @@ async def create_message(message_input: MessageCreate):
 @api_router.post("/friends/request")
 async def send_friend_request(request: FriendRequest):
     """Send a friend request"""
-    if db is not None:
-        existing = await db.friends.find_one({
-            "user_id": request.from_user_id,
-            "friend_id": request.to_user_id
-        })
-        
-        if existing:
-            return {"error": "Friend request already exists"}
-        
-        friend_request = {
-            "user_id": request.from_user_id,
-            "username": request.from_username,
-            "friend_id": request.to_user_id,
-            "friend_username": request.to_username,
-            "status": "pending",
-            "created_at": datetime.now(timezone.utc).isoformat()
-        }
-        await db.friends.insert_one(friend_request)
-        return {"status": "success", "message": "Friend request sent"}
-    return {"status": "success"}
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database not available")
+
+    # Look up the recipient user by username
+    recipient = await db.users.find_one({"username": request.to_username})
+    if not recipient:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    recipient_id = recipient["id"]
+    
+    if recipient_id == request.from_user_id:
+        raise HTTPException(status_code=400, detail="Cannot send friend request to yourself")
+
+    existing = await db.friends.find_one({
+        "user_id": request.from_user_id,
+        "friend_id": recipient_id
+    })
+    
+    if existing:
+        return {"error": "Friend request already exists or you are already friends"}
+    
+    # Store request for BOTH sides (or handle relationally, but here we store simple docs)
+    # We'll store a "request" document.
+    friend_request = {
+        "user_id": request.from_user_id,
+        "username": request.from_username,
+        "friend_id": recipient_id,
+        "friend_username": request.to_username,
+        "status": "pending",
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.friends.insert_one(friend_request)
+    return {"status": "success", "message": "Friend request sent"}
 
 @api_router.get("/friends/{user_id}")
 async def get_friends(user_id: str):
@@ -190,13 +486,26 @@ async def get_friends(user_id: str):
     if db is None:
         return []
     
-    friends = await db.friends.find({
-        "$or": [
-            {"user_id": user_id, "status": "accepted"},
-            {"friend_id": user_id, "status": "accepted"}
-        ]
-    }, {"_id": 0}).to_list(1000)
-    return friends
+    # Logic: Find where I am user_id AND status=accepted, OR where I am friend_id AND status=accepted
+    friends_list = []
+    
+    # Case 1: I sent request and it was accepted
+    cursor1 = db.friends.find({"user_id": user_id, "status": "accepted"}, {"_id": 0})
+    async for doc in cursor1:
+        friends_list.append({
+            "friend_id": doc["friend_id"],
+            "friend_username": doc["friend_username"]
+        })
+        
+    # Case 2: Someone sent me request and it was accepted
+    cursor2 = db.friends.find({"friend_id": user_id, "status": "accepted"}, {"_id": 0})
+    async for doc in cursor2:
+        friends_list.append({
+            "friend_id": doc["user_id"],
+            "friend_username": doc["username"]
+        })
+
+    return friends_list
 
 @api_router.get("/friends/requests/{user_id}")
 async def get_friend_requests(user_id: str):
@@ -210,14 +519,20 @@ async def get_friend_requests(user_id: str):
     }, {"_id": 0}).to_list(1000)
     return requests
 
-@api_router.post("/friends/accept/{request_id}")
-async def accept_friend_request(request_id: str):
+@api_router.post("/friends/accept/{request_from_user_id}/{current_user_id}")
+async def accept_friend_request(request_from_user_id: str, current_user_id: str):
     """Accept a friend request"""
     if db is not None:
-        await db.friends.update_one(
-            {"user_id": request_id},
+        result = await db.friends.update_one(
+            {
+                "user_id": request_from_user_id, 
+                "friend_id": current_user_id,
+                "status": "pending"
+            },
             {"$set": {"status": "accepted"}}
         )
+        if result.modified_count == 0:
+             raise HTTPException(status_code=404, detail="Friend request not found")
         return {"status": "success"}
     return {"status": "success"}
 

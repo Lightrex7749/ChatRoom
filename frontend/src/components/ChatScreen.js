@@ -70,12 +70,10 @@ export const ChatScreen = ({ user, onLeave }) => {
       
       <div className="flex-1 flex overflow-hidden flex-col lg:flex-row gap-0">
         {/* User List Sidebar - Hidden on mobile, visible on lg screens */}
-        <div className="hidden lg:flex lg:w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col">
-          <UserList 
-            users={users.filter(u => u.id !== user.id)}
-            currentUser={user}
-            selectedUser={selectedUser}
-            onSelectUser={setSelectedUser}
+        <div className="hidden lg:flex lg:w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col">
+          <FriendsPanel 
+            user={user}
+            onSelectFriend={handleSelectFriend}
           />
         </div>
 
@@ -102,10 +100,10 @@ export const ChatScreen = ({ user, onLeave }) => {
               <div className="text-center space-y-4">
                 <div className="text-6xl">💬</div>
                 <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-300">
-                  Select a user to start chatting
+                  Select a friend to start chatting
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Choose someone from the list to begin your conversation
+                  Choose someone from your friends list
                 </p>
               </div>
             </div>

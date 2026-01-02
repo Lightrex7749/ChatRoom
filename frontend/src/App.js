@@ -16,11 +16,11 @@ function App() {
     }
   }, []);
 
-  const handleJoin = (username) => {
+  const handleJoin = (userData) => {
+    // userData comes from backend with id, username, etc.
     const newUser = {
-      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
-      username: username,
-      friends: [],
+      ...userData,
+      friends: [], // Initialize empty friends list locally if needed, though backend manages it
       status: "online"
     };
     setUser(newUser);

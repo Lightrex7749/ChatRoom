@@ -1,0 +1,256 @@
+2026-01-02 22:13:09,801 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:13:09,802 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:13:16,039 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:13:16,040 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:13:30,610 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:13:30,610 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:13:40,403 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:13:40,404 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:13:40,845 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:13:40,872 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:13:48,929 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:13:48,929 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:13:49,479 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:13:49,511 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:14:05,117 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:14:06,728 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:14:06,729 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:14:08,432 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:14:08,464 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:14:16,567 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:14:42,672 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:14:45,602 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:15:29,693 - server - INFO - User sara (1767364339133d036dpu49) connected
+2026-01-02 22:15:32,982 - server - INFO - User sara (1767364339133d036dpu49) connected
+2026-01-02 22:15:41,580 - server - INFO - User sara (1767364339133d036dpu49) disconnected
+2026-01-02 22:15:42,214 - server - INFO - User sara (1767364339133d036dpu49) connected
+2026-01-02 22:15:45,214 - server - INFO - User sara (1767364339133d036dpu49) connected
+2026-01-02 22:16:08,189 - server - INFO - User sara (1767364339133d036dpu49) disconnected
+2026-01-02 22:16:11,522 - server - INFO - User sara (1767364339133d036dpu49) connected
+2026-01-02 22:16:37,580 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-02 22:16:38,216 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:16:41,181 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:16:44,818 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:16:48,150 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:16:59,530 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:16:59,535 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) disconnected
+2026-01-02 22:16:59,560 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:17:02,511 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:17:29,015 - server - INFO - User sara (1767364339133d036dpu49) disconnected
+2026-01-02 22:17:29,019 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) disconnected
+2026-01-02 22:17:29,734 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:17:32,735 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:20:17,911 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:20:17,913 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:22:48,532 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:22:48,535 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:23:10,216 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:23:10,216 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:23:15,675 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) disconnected
+2026-01-02 22:23:15,675 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:23:15,676 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:23:15,676 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) disconnected
+2026-01-02 22:23:15,677 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:23:15,677 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:23:17,142 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:23:17,142 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:23:19,985 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:23:19,987 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:23:20,002 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:23:20,003 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:23:20,022 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:23:20,047 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:24:29,464 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:24:29,464 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,465 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,466 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,466 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,469 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) disconnected
+2026-01-02 22:24:29,470 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,471 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:24:29,472 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) disconnected
+2026-01-02 22:24:31,949 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:24:31,949 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:24:32,087 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:24:32,088 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:24:32,785 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:24:32,801 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:24:32,989 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:24:33,005 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:24:33,021 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:24:33,037 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:24:37,534 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:24:37,543 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:25:18,862 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:25:18,871 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:25:35,888 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) disconnected
+2026-01-02 22:25:36,857 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:25:39,878 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:29:22,470 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:29:22,479 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:29:29,830 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) disconnected
+2026-01-02 22:29:29,830 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:29:29,830 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:29:29,831 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:29:29,831 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-02 22:29:29,831 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) disconnected
+2026-01-02 22:29:31,208 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:29:31,208 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:29:31,790 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:29:31,790 - server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 22:29:34,247 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:29:34,283 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:29:34,284 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:29:34,307 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-02 22:29:34,311 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:29:34,311 - server - ERROR - Error broadcasting message: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2026-01-02 22:29:34,312 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:29:34,313 - server - ERROR - Error broadcasting message: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2026-01-02 22:29:34,337 - server - INFO - User rezz (17673643511646ek8dvt4m) connected
+2026-01-02 22:29:34,337 - server - ERROR - Error broadcasting message: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2026-01-02 22:29:34,353 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:29:38,003 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) connected
+2026-01-02 22:29:41,000 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:29:42,316 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:30:20,780 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:32:17,670 - server - INFO - User rezz (17673643511646ek8dvt4m) disconnected
+2026-01-02 22:32:17,672 - server - INFO - User rezz (afa1fbda-54b5-4613-bdf3-50f4290a1a3f) disconnected
+2026-01-02 22:32:32,987 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:32:33,017 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 22:32:59,868 - __main__ - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:37:40,082 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 22:37:41,169 - server - INFO - User sara (a15389b4-f6f9-47e8-84bc-790dcefba972) connected
+2026-01-02 23:10:18,973 - __main__ - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 00:10:44,264 - __main__ - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 00:33:42,481 - __main__ - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 00:34:21,918 - __main__ - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 00:54:08,710 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:26:24,906 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:31:21,742 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:35:40,895 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:35:53,489 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:36:14,694 - server - ERROR - Registration error: SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 2.0s, Topology Description: <TopologyDescription id: 69581b5818f835e411d65837, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+Traceback (most recent call last):
+  File "D:\ProjectsGit\chatroom\backend\server.py", line 321, in register
+    existing_user = await db.users.find_one({"username": user.username})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\collection.py", line 1508, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1262, in next
+    if len(self.__data) or self._refresh():
+                           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1153, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1868, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1811, in __start_session
+    self._topology._check_implicit_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 583, in _check_implicit_session_support
+    self._check_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 599, in _check_session_support
+    self._select_servers_loop(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        readable_server_selector, self.get_server_selection_timeout(), None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 269, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 2.0s, Topology Description: <TopologyDescription id: 69581b5818f835e411d65837, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+2026-01-03 01:36:55,653 - server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 01:38:09,035 - server - ERROR - Registration error: SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 2.0s, Topology Description: <TopologyDescription id: 6958255f8417ce75ca613e10, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+Traceback (most recent call last):
+  File "D:\ProjectsGit\chatroom\backend\server.py", line 321, in register
+    existing_user = await db.users.find_one({"username": user.username})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\collection.py", line 1508, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1262, in next
+    if len(self.__data) or self._refresh():
+                           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1153, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1868, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1811, in __start_session
+    self._topology._check_implicit_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 583, in _check_implicit_session_support
+    self._check_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 599, in _check_session_support
+    self._select_servers_loop(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        readable_server_selector, self.get_server_selection_timeout(), None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 269, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 2.0s, Topology Description: <TopologyDescription id: 6958255f8417ce75ca613e10, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-00.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-01.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-lxfyshs-shard-00-02.lr3jexl.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+2026-01-03 01:38:29,360 - server - WARNING - MongoDB init error: Empty host (or extra comma in host list).. Switching to InMemoryDB.
+2026-01-03 01:38:45,085 - server - WARNING - MongoDB init error: Empty host (or extra comma in host list).. Switching to InMemoryDB.
+2026-01-03 01:48:19,225 - server - WARNING - MongoDB init error: Empty host (or extra comma in host list).. Switching to InMemoryDB.
+2026-01-03 01:49:08,758 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 01:49:11,772 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 01:49:45,295 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 01:49:48,301 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 01:50:38,725 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) disconnected
+2026-01-03 01:50:40,570 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 01:50:43,588 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:04:37,299 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) disconnected
+2026-01-03 02:04:37,299 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:04:37,299 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 02:05:04,936 - server - WARNING - MongoDB init error: Empty host (or extra comma in host list).. Switching to InMemoryDB.
+2026-01-03 02:05:05,224 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 02:05:07,500 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 02:05:48,852 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:05:49,026 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:06:23,410 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) disconnected
+2026-01-03 02:06:26,747 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:06:29,613 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:06:32,624 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:07:22,931 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 02:07:22,931 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:07:22,932 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:07:22,933 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:07:22,933 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:07:22,934 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 02:07:22,934 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 02:07:22,934 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) disconnected
+2026-01-03 02:20:30,143 - server - WARNING - MongoDB init error: Empty host (or extra comma in host list).. Switching to InMemoryDB.
+2026-01-03 02:20:30,368 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:20:30,385 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:20:30,401 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:20:30,585 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:20:31,719 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) connected
+2026-01-03 02:20:33,734 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 02:20:34,078 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 02:20:37,225 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 02:21:33,807 - server - INFO - User rezz (11220503-8f96-4640-8291-faf6665de3b0) disconnected
+2026-01-03 02:21:33,810 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 02:21:33,810 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 03:03:19,637 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 03:03:19,641 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 03:03:19,646 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected

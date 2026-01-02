@@ -1,16 +1,23 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check } from "lucide-react";
+import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { format } from "date-fns";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
 export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage }) => {
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   // Memoize filtered messages for better performance
   const filteredMessages = useMemo(() => 
@@ -29,9 +36,42 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (inputMessage.trim()) {
+    
+    if (selectedFile) {
+      // Upload file first
+      setUploading(true);
+      try {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        
+        const response = await axios.post(`${BACKEND_URL}/api/upload`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        
+        // Send message with file
+        onSendMessage({
+          type: "send-message",
+          from_user_id: currentUser.id,
+          from_username: currentUser.username,
+          to_user_id: selectedUser.id,
+          message: inputMessage.trim() || `Sent ${response.data.file_type}`,
+          file_url: response.data.file_url,
+          file_type: response.data.file_type,
+          file_name: response.data.file_name
+        });
+        
+        setSelectedFile(null);
+        setFilePreview(null);
+      } catch (error) {
+        console.error("File upload error:", error);
+        alert("Failed to upload file");
+      } finally {
+        setUploading(false);
+      }
+    } else if (inputMessage.trim()) {
+      // Send text message
       onSendMessage({
         type: "send-message",
         from_user_id: currentUser.id,
@@ -39,8 +79,37 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
         to_user_id: selectedUser.id,
         message: inputMessage.trim()
       });
-      setInputMessage("");
-      handleStopTyping();
+    }
+    
+    setInputMessage("");
+    handleStopTyping();
+  };
+
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      
+      // Create preview for images
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setFilePreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else if (file.type.startsWith('video/')) {
+        setFilePreview('video');
+      } else {
+        setFilePreview('file');
+      }
+    }
+  };
+
+  const clearFile = () => {
+    setSelectedFile(null);
+    setFilePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
@@ -171,12 +240,46 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                         <p className="text-sm">Message deleted</p>
                       </div>
                     ) : (
-                      <div className={`px-4 py-2 rounded-2xl relative ${
+                      <div className={`rounded-2xl relative ${
                         isOwn
                           ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-sm"
                           : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-bl-sm"
                       }`}>
-                        <p className="text-sm break-words" data-testid={`message-${index}`}>{msg.message}</p>
+                        {/* File preview */}
+                        {msg.file_url && msg.file_type === 'image' && (
+                          <div className="mb-2 overflow-hidden rounded-lg">
+                            <img 
+                              src={`${BACKEND_URL}${msg.file_url}`} 
+                              alt={msg.file_name || 'Image'} 
+                              className="max-w-full max-h-64 object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                              onClick={() => window.open(`${BACKEND_URL}${msg.file_url}`, '_blank')}
+                            />
+                          </div>
+                        )}
+                        {msg.file_url && msg.file_type === 'video' && (
+                          <div className="mb-2 overflow-hidden rounded-lg">
+                            <video 
+                              src={`${BACKEND_URL}${msg.file_url}`} 
+                              controls 
+                              className="max-w-full max-h-64 object-contain"
+                            />
+                          </div>
+                        )}
+                        {msg.file_url && msg.file_type === 'file' && (
+                          <div className="mb-2 p-2 bg-white/20 dark:bg-black/20 rounded-lg">
+                            <a 
+                              href={`${BACKEND_URL}${msg.file_url}`} 
+                              download={msg.file_name}
+                              className="flex items-center space-x-2 hover:underline"
+                            >
+                              <Paperclip className="w-4 h-4" />
+                              <span className="text-sm">{msg.file_name || 'File'}</span>
+                            </a>
+                          </div>
+                        )}
+                        {msg.message && (
+                          <p className="text-sm break-words px-4 py-2" data-testid={`message-${index}`}>{msg.message}</p>
+                        )}
                         {isOwn && (
                           <Button
                             variant="ghost"
@@ -211,7 +314,48 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
 
       {/* Input Area */}
       <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex-shrink-0">
+        {/* File Preview */}
+        {filePreview && (
+          <div className="mb-2 p-2 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              {filePreview === 'video' && <Video className="w-5 h-5 text-blue-500" />}
+              {filePreview === 'file' && <Paperclip className="w-5 h-5 text-gray-500" />}
+              {filePreview !== 'video' && filePreview !== 'file' && (
+                <img src={filePreview} alt="Preview" className="w-12 h-12 object-cover rounded" />
+              )}
+              <span className="text-sm text-gray-700 dark:text-gray-300 truncate max-w-[200px]">
+                {selectedFile?.name}
+              </span>
+            </div>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={clearFile}
+              className="h-6 w-6 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+        )}
+        
         <form onSubmit={handleSend} className="flex items-center space-x-2">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,video/*"
+            onChange={handleFileSelect}
+            className="hidden"
+          />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => fileInputRef.current?.click()}
+            className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0"
+          >
+            <Paperclip className="w-5 h-5 text-gray-500" />
+          </Button>
           <Button
             type="button"
             variant="ghost"
@@ -223,7 +367,7 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
           <Input
             data-testid="message-input"
             type="text"
-            placeholder="Type a message..."
+            placeholder={selectedFile ? "Add a caption..." : "Type a message..."}
             value={inputMessage}
             onChange={handleInputChange}
             onBlur={handleStopTyping}
@@ -232,11 +376,15 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
           <Button
             data-testid="send-message-button"
             type="submit"
-            disabled={!inputMessage.trim()}
+            disabled={(!inputMessage.trim() && !selectedFile) || uploading}
             className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 flex-shrink-0"
             size="icon"
           >
-            <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+            {uploading ? (
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+            )}
           </Button>
         </form>
       </div>

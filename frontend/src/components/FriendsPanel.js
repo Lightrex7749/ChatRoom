@@ -4,6 +4,7 @@ import { Users, UserPlus, MessageSquare, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
+import { toast } from "sonner";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -51,25 +52,28 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
       await axios.post(`${BACKEND_URL}/api/friends/request`, {
         from_user_id: user.id,
         from_username: user.username,
-        to_user_id: newFriendUsername, // In a real app, lookup username to get ID
         to_username: newFriendUsername,
       });
       setNewFriendUsername("");
-      loadFriends();
+      toast.success("Friend request sent!");
+      loadFriends(); // Refresh lists
     } catch (error) {
       console.error("Error sending friend request:", error);
+      toast.error(error.response?.data?.detail || "Failed to send request");
     }
   };
 
-  const handleAcceptRequest = async (requestId) => {
+  const handleAcceptRequest = async (requestFromUserId) => {
     try {
       await axios.post(
-        `${BACKEND_URL}/api/friends/accept/${requestId}`
+        `${BACKEND_URL}/api/friends/accept/${requestFromUserId}/${user.id}`
       );
+      toast.success("Friend request accepted!");
       loadFriendRequests();
       loadFriends();
     } catch (error) {
       console.error("Error accepting friend request:", error);
+      toast.error("Failed to accept request");
     }
   };
 

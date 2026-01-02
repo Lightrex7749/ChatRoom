@@ -1,0 +1,95 @@
+2026-01-02 21:07:21,634 - backend.server - INFO - MongoDB connected successfully
+2026-01-02 21:09:04,418 - backend.server - INFO - MongoDB connected successfully
+2026-01-02 21:09:10,163 - backend.server - ERROR - Registration error: SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6957e698ca9d00a166a6fc69, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+Traceback (most recent call last):
+  File "D:\ProjectsGit\chatroom\backend\server.py", line 167, in register
+    existing_user = await db.users.find_one({"username": user.username})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\collection.py", line 1508, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1262, in next
+    if len(self.__data) or self._refresh():
+                           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1153, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1868, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1811, in __start_session
+    self._topology._check_implicit_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 583, in _check_implicit_session_support
+    self._check_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 599, in _check_session_support
+    self._select_servers_loop(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        readable_server_selector, self.get_server_selection_timeout(), None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 269, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6957e698ca9d00a166a6fc69, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+2026-01-02 21:09:36,681 - backend.server - INFO - MongoDB connected successfully
+2026-01-02 21:09:43,400 - backend.server - ERROR - Registration error: SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6957e6b8ca3edd9c6acdf4e9, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+Traceback (most recent call last):
+  File "D:\ProjectsGit\chatroom\backend\server.py", line 173, in register
+    existing_user = await db.users.find_one({"username": user.username})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\collection.py", line 1508, in find_one
+    for result in cursor.limit(-1):
+                  ~~~~~~~~~~~~^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1262, in next
+    if len(self.__data) or self._refresh():
+                           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\cursor.py", line 1153, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1868, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\mongo_client.py", line 1811, in __start_session
+    self._topology._check_implicit_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 583, in _check_implicit_session_support
+    self._check_session_support()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 599, in _check_session_support
+    self._select_servers_loop(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        readable_server_selector, self.get_server_selection_timeout(), None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\topology.py", line 269, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032),SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6957e6b8ca3edd9c6acdf4e9, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-00.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-01.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>, <ServerDescription ('ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-czsidk2-shard-00-02.b0n8dcm.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032)')>]>
+2026-01-02 21:12:23,031 - backend.server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 21:12:23,031 - backend.server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 21:12:23,242 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-02 21:13:17,404 - backend.server - INFO - MongoDB client initialized (lazy connection)
+2026-01-02 21:13:17,405 - backend.server - WARNING - Forcing InMemoryDB usage due to known SSL issues in environment.
+2026-01-02 21:13:18,387 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python313\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 00:07:49,641 - backend.server - INFO - MongoDB client initialized (lazy connection)
+2026-01-03 00:09:15,645 - backend.server - INFO - MongoDB client initialized (lazy connection)

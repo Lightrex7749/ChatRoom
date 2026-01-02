@@ -1,0 +1,5 @@
+2026-01-03 00:07:49,641 - backend.server - INFO - MongoDB client initialized (lazy connection)
+INFO:     Started server process [13444]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
