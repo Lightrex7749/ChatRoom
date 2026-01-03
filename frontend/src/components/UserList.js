@@ -2,7 +2,15 @@ import { motion } from "framer-motion";
 import { Users, CheckCircle2, XCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const getBackendUrl = () => {
+  if (process.env.REACT_APP_BACKEND_URL) {
+    return process.env.REACT_APP_BACKEND_URL;
+  }
+  const protocol = window.location.protocol === 'https:' ? 'https://' : 'http://';
+  return `${protocol}${window.location.hostname}:8000`;
+};
+
+const BACKEND_URL = getBackendUrl();
 
 export const UserList = ({ users, currentUser, selectedUser, onSelectUser }) => {
   return (

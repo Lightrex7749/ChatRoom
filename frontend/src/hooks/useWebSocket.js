@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const getBackendUrl = () => {
+  if (process.env.REACT_APP_BACKEND_URL) {
+    return process.env.REACT_APP_BACKEND_URL;
+  }
+  // Dynamic fallback: use current hostname with port 8000
+  const protocol = window.location.protocol === 'https:' ? 'https://' : 'http://';
+  return `${protocol}${window.location.hostname}:8000`;
+};
+
+const BACKEND_URL = getBackendUrl();
 const WS_URL = BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://');
 
 // Exponential backoff for reconnection
