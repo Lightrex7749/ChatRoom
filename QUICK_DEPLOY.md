@@ -9,7 +9,20 @@
 
 ## 📝 Deployment Steps Summary
 
-### 1️⃣ Database (MongoDB Atlas) - Do This First!
+### 1️⃣ Database - Choose ONE Option
+
+#### Option A: PostgreSQL on Render (Recommended - Easier!)
+```
+1. On Render Dashboard → New → PostgreSQL
+2. Name: chatroom-db
+3. Choose FREE tier
+4. Click "Create Database"
+5. Copy "Internal Database URL" 
+   (looks like: postgresql://user:pass@host/db)
+6. ✅ Done! No extra setup needed!
+```
+
+#### Option B: MongoDB Atlas (Alternative)
 ```
 1. Go to: https://mongodb.com/cloud/atlas
 2. Sign up (FREE tier M0)
@@ -32,6 +45,13 @@
    - Start: uvicorn server:app --host 0.0.0.0 --port $PORT
    
 4. Environment Variables (click "Advanced"):
+   
+   For PostgreSQL (Recommended):
+   DATABASE_URL=<your-render-postgres-internal-url>
+   CORS_ORIGINS=https://your-app.vercel.app
+   PORT=10000
+   
+   OR for MongoDB:
    MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/
    DB_NAME=chatroom
    CORS_ORIGINS=https://your-app.vercel.app
@@ -68,6 +88,14 @@
 3. Update CORS_ORIGINS with Vercel URL:
    CORS_ORIGINS=https://your-app.vercel.app
 4. Save (auto-redeploys)
+
+**Option 1: PostgreSQL (Recommended)**
+```bash
+DATABASE_URL=postgresql://user:pass@host:5432/dbname
+CORS_ORIGINS=https://your-vercel-app.vercel.app
+```
+
+**Option 2: MongoDB**
 ```
 
 ---
@@ -131,6 +159,11 @@ REACT_APP_BACKEND_URL=https://your-render-backend.onrender.com
 ### Can't connect to backend
 - Check `REACT_APP_BACKEND_URL` in Vercel
 - No trailing slash!
+**PostgreSQL:**
+- Use "Internal Database URL" from Render PostgreSQL
+- Make sure PostgreSQL service is running
+
+**MongoDB:**
 - Redeploy frontend after env change
 
 ### CORS errors

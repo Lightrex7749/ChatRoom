@@ -251,7 +251,7 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
   const handleInputChange = (e) => {
     setInputMessage(e.target.value);
     
-    if (!isTyping) {
+    if (!isTyping && selectedUser) {
       setIsTyping(true);
       onSendMessage({
         type: "typing",
@@ -273,7 +273,7 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
   };
 
   const handleStopTyping = () => {
-    if (isTyping) {
+    if (isTyping && selectedUser) {
       setIsTyping(false);
       onSendMessage({
         type: "stop-typing",
