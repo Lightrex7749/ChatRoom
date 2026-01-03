@@ -254,3 +254,1154 @@ pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-lxfyshs-sha
 2026-01-03 03:03:19,637 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
 2026-01-03 03:03:19,641 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
 2026-01-03 03:03:19,646 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 05:23:49,430 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 05:23:50,493 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 05:24:11,435 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 05:24:12,231 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 05:24:12,624 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:21:03,611 - server - WARNING - Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:33:22,281 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:33:23,471 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:33:23,478 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:33:23,479 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:33:53,631 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:33:53,637 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:33:53,637 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:39:52,106 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:39:52,113 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:39:52,114 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:39:52,114 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:42:04,596 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:42:04,610 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:42:04,616 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:42:04,616 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:42:04,617 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:42:05,636 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:42:05,644 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:42:05,644 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:42:05,644 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:43:16,094 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:43:16,111 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:43:16,111 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:43:16,111 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:43:38,998 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:43:42,254 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:44:25,940 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:44:28,953 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:46:57,425 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:46:57,434 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:46:57,435 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:46:57,435 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:46:57,807 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:46:57,808 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:46:57,874 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 11:47:00,239 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:47:00,241 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:47:01,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:47:30,018 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 11:47:30,018 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 11:47:30,019 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 11:47:31,678 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:47:31,684 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:47:31,684 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:47:31,684 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:47:33,330 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:47:33,363 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:47:34,253 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:47:34,282 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:47:41,048 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 11:47:52,432 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 11:50:09,306 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:50:09,313 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:50:09,314 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:50:09,314 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:50:24,242 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:50:27,277 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:50:32,627 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:50:35,638 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:52:22,968 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 11:52:22,969 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 11:52:22,970 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 11:52:22,972 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 11:52:24,345 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:52:24,352 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:52:24,352 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:52:24,352 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:52:27,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:52:27,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:52:27,270 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:52:27,272 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:52:40,916 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 11:52:40,916 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 11:52:40,917 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 11:52:40,918 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 11:52:42,773 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:52:42,784 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:52:42,785 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:52:42,785 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:52:44,235 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:52:44,268 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:52:45,260 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:52:45,284 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:56:45,789 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 11:56:45,796 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 11:56:45,797 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 11:56:45,797 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 11:56:45,811 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:56:45,811 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:56:49,235 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 11:56:49,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 11:58:20,337 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 12:03:36,561 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 12:03:36,670 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 12:56:06,570 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 12:56:06,857 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:07:17,319 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:07:18,785 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:07:20,147 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:07:20,164 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:07:20,164 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:07:20,165 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:07:21,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:07:21,275 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:08:17,023 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:08:18,438 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:08:18,445 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:08:18,445 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:08:18,445 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:08:21,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:08:21,270 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:09:48,040 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:09:49,399 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:09:50,683 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:09:50,691 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:09:50,691 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:09:50,693 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:09:52,249 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:09:52,263 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:09:52,994 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:09:54,428 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:09:54,435 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:09:54,435 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:09:54,436 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:09:57,239 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:09:57,267 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:10:48,474 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:10:52,010 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:10:55,016 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:10:59,609 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:24:33,372 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:24:34,830 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:24:34,838 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:24:34,838 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:24:34,839 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:29:27,424 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:29:27,444 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:29:27,444 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:29:27,444 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:30:48,034 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:30:48,049 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:30:48,049 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:30:48,049 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:30:48,206 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:30:48,216 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:30:48,216 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:30:48,217 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:31:33,503 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:31:34,147 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:31:37,189 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:31:37,266 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:32:55,485 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:33:02,197 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:05,249 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:23,708 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:33:23,958 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:33:24,025 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:24,273 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:33:27,028 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:28,241 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:33:51,896 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:33:52,210 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:52,954 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:33:53,287 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:33:55,218 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:33:57,249 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:35:17,371 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:35:21,579 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:35:24,602 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:36:41,562 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:36:45,648 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:36:48,663 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:37:33,051 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:37:33,051 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:37:33,052 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:37:33,052 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:43:40,180 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:43:40,182 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:43:40,192 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:40,194 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:40,194 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:43:40,202 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:40,205 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:40,205 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:43:40,236 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:43:40,237 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:43:40,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:43:40,239 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:43:40,247 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 13:43:40,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:43:40,248 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 13:43:40,268 - server - ERROR - Error broadcasting message: no close frame received or sent
+2026-01-03 13:43:40,268 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:43:40,302 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:43:40,303 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:43:40,368 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:43:40,430 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:43:55,943 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:43:55,943 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:43:55,944 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:43:55,945 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:43:55,945 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:43:57,413 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:43:57,419 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:57,419 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:43:57,419 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:44:00,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:44:00,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:44:00,267 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 13:44:00,268 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 13:44:00,270 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 13:44:00,273 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:44:33,598 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:44:34,787 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:44:34,795 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:44:34,795 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:44:34,795 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:47:21,704 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 13:47:21,709 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 13:47:21,710 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 13:47:21,710 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 13:47:21,867 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:47:21,868 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:21,898 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:47:21,900 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:21,929 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:21,946 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:23,248 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:23,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 13:47:53,931 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:47:56,971 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 13:51:33,613 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 15:57:23,254 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 15:57:23,265 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 15:57:23,265 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 15:57:23,265 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 15:58:04,411 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 15:58:07,419 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 15:59:09,719 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 15:59:12,730 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:01:31,676 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:01:31,692 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:01:31,693 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:01:31,693 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:01:31,834 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:01:31,835 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:01:34,235 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:01:34,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:01:48,281 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:01:48,281 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:01:48,282 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:02:11,854 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:02:11,868 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:02:11,868 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:02:11,868 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:02:12,292 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:02:12,323 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:02:12,369 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:02:13,605 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:02:27,723 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:02:37,597 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:03:04,677 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:03:04,687 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:03:04,687 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:03:04,687 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:03:05,252 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:03:07,241 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:04:03,361 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:04:26,538 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:04:29,582 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:04:33,081 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:04:36,090 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:05:57,000 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:05:57,001 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:05:57,001 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:05:58,150 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:05:58,156 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:05:58,156 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:05:58,156 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:06:01,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:01,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:01,258 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:01,263 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:08,942 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:06:08,942 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:06:08,943 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:06:10,033 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:06:10,041 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:06:10,042 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:06:10,042 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:06:13,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:13,249 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:13,268 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:13,272 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:37,275 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:06:37,276 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:06:37,277 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:06:37,278 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:06:38,876 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 16:06:38,892 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 16:06:38,892 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 16:06:38,893 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 16:06:40,596 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:40,612 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 16:06:41,230 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:41,252 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:43,059 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 16:06:43,914 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:46,930 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 16:06:49,721 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 16:07:46,175 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 16:07:46,175 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 16:07:46,176 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 17:56:51,500 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 17:56:51,512 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 17:56:51,512 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 17:56:51,512 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 17:57:52,272 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 17:57:52,280 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 17:57:52,280 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 17:57:52,280 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 18:02:27,451 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 18:02:27,460 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 18:02:27,460 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 18:02:27,460 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 18:03:06,672 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:03:09,692 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:04:46,454 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:04:50,374 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:04:52,049 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:04:53,340 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:04:55,060 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:05:04,600 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 18:05:39,487 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 18:14:08,619 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:22:25,761 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 18:22:25,769 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 18:22:25,769 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 18:22:25,770 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 18:22:26,246 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:22:27,275 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:23:04,833 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:23:07,877 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:23:43,974 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:23:44,292 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:23:47,282 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:23:57,499 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:24:01,624 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:24:01,762 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:24:02,077 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:24:05,083 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:24:13,731 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 18:25:47,556 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 18:27:24,017 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 18:27:24,018 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 18:27:24,019 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 18:27:24,019 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:27:25,435 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 18:27:25,441 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 18:27:25,441 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 18:27:25,441 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 18:27:28,239 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:27:28,241 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:27:28,256 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:27:28,257 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:27:28,286 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:28:07,314 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:28:07,314 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 18:28:07,315 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:28:08,500 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 18:28:08,505 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 18:28:08,506 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 18:28:08,506 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 18:28:11,241 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:28:11,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:28:11,256 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:28:11,260 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:28:11,287 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:29:39,044 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 18:31:51,087 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:31:53,063 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:31:53,930 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:31:54,734 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:31:57,742 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:35:26,716 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:35:29,128 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:35:32,145 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:36:55,684 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:36:55,998 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:36:56,022 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:36:56,352 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:36:58,997 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:36:59,372 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:38:10,073 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:38:12,189 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:38:15,223 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:41:16,987 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:41:16,999 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:41:17,299 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:41:17,316 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:41:21,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:41:21,244 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:41:31,995 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:41:32,387 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:41:36,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:41:36,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:42:19,608 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:43:02,320 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:43:02,340 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:43:06,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:43:06,239 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:46:15,324 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:46:16,953 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:46:19,997 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:46:41,903 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 18:46:43,721 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:46:46,731 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 18:55:44,885 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:55:46,803 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:55:49,836 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:56:30,707 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 18:56:32,376 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 18:56:35,418 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:03:29,194 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:04:55,087 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:04:59,240 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:06:17,362 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:06:17,474 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:06:21,237 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:06:21,239 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:07:11,180 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:07:13,610 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:07:16,646 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:14:07,014 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:14:07,014 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 19:14:07,015 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 19:14:07,015 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:14:09,464 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 19:14:09,474 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 19:14:09,475 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 19:14:09,475 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 19:14:11,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:14:11,251 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:14:11,273 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:14:11,274 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:15:07,020 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:15:07,020 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 19:15:07,021 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:15:10,057 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 19:15:10,070 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 19:15:10,071 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 19:15:10,071 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 19:15:11,236 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:15:11,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:15:11,266 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:15:11,267 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:15:51,969 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:15:51,969 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 19:15:51,970 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 19:15:51,971 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:15:55,022 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 19:15:55,034 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 19:15:55,035 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 19:15:55,036 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 19:15:56,232 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:15:57,244 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:15:58,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:15:58,279 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:23:13,197 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:23:50,460 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:23:50,810 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:23:53,902 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:23:54,228 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:23:56,918 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:27:24,380 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 19:27:33,090 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:27:36,423 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:28:28,943 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:28:29,262 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:28:29,318 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:28:33,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:28:33,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:28:46,723 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:28:48,678 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:28:51,682 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:30:42,503 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:30:44,128 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:30:47,142 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:34:00,086 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:34:01,319 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:34:04,316 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:38:29,073 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:38:31,338 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:38:34,360 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:42:16,943 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:42:18,524 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:42:21,536 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:43:05,971 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:43:06,289 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:43:10,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:45:44,647 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:45:44,965 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:45:47,970 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:50:10,502 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:50:10,823 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:50:11,126 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:50:11,445 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:50:13,834 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:50:15,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:51:49,521 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:51:49,842 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:51:50,624 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:51:50,945 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:51:52,850 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:51:54,240 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:52:27,888 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:52:30,263 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:52:33,226 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:55:52,934 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:55:52,954 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:55:53,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:55:53,274 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:55:57,240 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:55:57,241 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:12,942 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:57:12,965 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:57:13,258 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:57:13,273 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:17,236 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:17,237 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:57:21,930 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:57:21,960 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:57:22,249 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:22,281 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:57:26,234 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:26,238 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:57:40,928 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 19:57:40,937 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 19:57:41,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:41,255 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 19:57:45,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 19:57:45,241 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:14:31,954 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:14:31,958 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:14:32,285 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:14:32,298 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:14:36,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:14:36,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:16:26,145 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:16:28,458 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:16:31,496 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:16:47,485 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:16:49,661 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:16:52,680 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:17,086 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:19:17,402 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:18,649 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:19:18,975 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:20,429 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:22,237 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:32,998 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:19:33,130 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:19:33,309 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:33,451 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:37,240 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:37,252 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:43,986 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:19:43,988 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:19:43,991 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:19:43,993 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:19:43,994 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:19:45,511 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:19:45,518 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:19:45,518 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:19:45,518 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:19:48,656 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:19:48,664 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:19:48,664 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:19:48,664 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:19:48,667 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:48,667 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:48,689 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:48,691 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:48,715 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:48,719 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:19:48,735 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:19:48,737 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:20:28,040 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:20:28,208 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:20:28,359 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:20:28,533 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:20:32,244 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:20:32,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:20:48,558 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:20:51,294 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:20:54,351 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:21:02,183 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:21:03,857 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:21:06,880 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:21:08,853 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 20:22:24,809 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:22:26,377 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:22:28,695 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:22:29,985 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:22:30,232 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:22:33,023 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:25:45,955 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:25:45,956 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:25:45,957 - server - ERROR - Error broadcasting message: received 1005 (no status received [internal]); then sent 1005 (no status received [internal])
+2026-01-03 20:25:46,289 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:25:46,292 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:25:50,239 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:25:50,245 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:26:01,794 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:26:04,108 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:26:07,139 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:26:08,571 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:26:10,422 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:26:13,434 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:29:55,407 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:29:55,724 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:29:55,987 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:29:56,335 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:29:58,745 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:30:00,242 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:30:43,937 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:30:43,937 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:30:43,938 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:30:43,938 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:30:45,215 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:30:45,222 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:30:45,222 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:30:45,222 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:30:48,248 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:30:48,249 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:30:48,274 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:30:48,279 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:30:48,297 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:30:48,298 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:06,953 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:31:06,993 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:31:07,267 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:07,314 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:11,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:11,261 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:17,026 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:31:17,027 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:31:17,028 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:31:17,029 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:31:17,031 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:31:17,032 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:31:19,092 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:31:19,104 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:31:19,105 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:31:19,105 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:31:20,664 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:20,684 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:20,713 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:20,761 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:21,235 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:21,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:21,266 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:21,282 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:23,709 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:31:26,069 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:29,278 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:31:29,317 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:31:31,222 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:34,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:31:42,513 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 20:33:58,033 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:33:58,034 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:33:58,035 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:33:59,400 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:33:59,407 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:33:59,407 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:33:59,407 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:34:02,249 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:34:02,252 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:34:02,276 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:34:02,278 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:34:05,980 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:34:06,007 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:34:06,298 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:34:06,325 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:34:10,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:34:10,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:18,960 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:35:18,960 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:18,961 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:35:20,170 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:35:20,177 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:20,177 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:20,177 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:35:23,248 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:23,250 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:23,263 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:23,267 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:23,279 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:23,294 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:34,015 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:35:34,016 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:34,016 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:34,017 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:34,017 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:35:35,380 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:35:35,386 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:35,386 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:35,386 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:35:38,238 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:38,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:38,268 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:38,269 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:38,283 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:38,298 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:43,008 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:35:43,008 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:43,008 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:43,009 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:35:43,009 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:35:44,243 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:35:44,255 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:44,255 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:35:44,256 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:35:46,356 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:46,429 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:46,446 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:35:47,242 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:47,272 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:35:47,286 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:23,951 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:37:23,963 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:37:24,273 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:24,288 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:28,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:28,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:29,947 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:37:29,949 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:37:30,265 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:30,268 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:34,245 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:34,249 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:45,950 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:37:45,956 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:37:46,260 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:46,276 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:50,234 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:50,236 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:37:58,956 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:37:58,960 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:37:59,266 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:37:59,284 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:03,238 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:38:03,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:12,956 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:38:12,958 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:38:13,263 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:38:13,279 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:17,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:38:17,255 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:32,081 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:38:34,830 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:38:36,083 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:38:38,269 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:38:38,364 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:42,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:38:46,962 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 20:44:05,991 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:44:05,992 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:44:05,992 - server - ERROR - Error broadcasting message: received 1005 (no status received [internal]); then sent 1005 (no status received [internal])
+2026-01-03 20:44:06,312 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:44:06,316 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:44:10,238 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:44:10,240 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:44:27,980 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:44:27,981 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:44:28,288 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:44:28,303 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:44:32,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:44:32,248 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:45:39,987 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:45:39,988 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:45:39,989 - server - ERROR - Error broadcasting message: received 1005 (no status received [internal]); then sent 1005 (no status received [internal])
+2026-01-03 20:45:40,312 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:45:40,314 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:45:44,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:45:44,244 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:06,001 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:46:06,013 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:46:06,310 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:06,327 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:10,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:10,253 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:19,684 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:46:19,990 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:46:20,036 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:20,300 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:22,999 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:24,233 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:36,007 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:46:36,008 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:46:36,009 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:46:36,009 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:46:36,010 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:46:37,392 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:46:37,399 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:46:37,399 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:46:37,399 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:46:40,540 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:46:40,550 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:46:40,550 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:46:40,550 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:46:40,554 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,555 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,578 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,581 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,599 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,600 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,616 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,617 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,630 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,647 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,649 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,663 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:46:40,664 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:46:40,692 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:22,010 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:48:22,010 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:48:22,011 - server - ERROR - Error broadcasting message: received 1005 (no status received [internal]); then sent 1005 (no status received [internal])
+2026-01-03 20:48:22,327 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:22,329 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:26,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:26,252 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:37,980 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:48:37,981 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:37,983 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:37,984 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:37,984 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:37,985 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:48:39,117 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:48:39,123 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:48:39,123 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:48:39,124 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:48:42,252 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,254 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,280 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,280 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,296 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,297 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,311 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,327 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,328 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,343 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,344 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,358 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,374 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,375 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:42,390 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:42,406 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:54,939 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:48:54,939 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,940 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,940 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,941 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,943 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,944 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:48:54,946 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:48:56,123 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:48:56,129 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:48:56,129 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:48:56,129 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:48:59,244 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,246 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,272 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,273 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,287 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,288 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,302 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,317 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,319 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,334 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,335 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,350 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,351 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,366 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:48:59,367 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:48:59,397 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:01,981 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:49:01,984 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:49:02,290 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:02,306 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:06,249 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:06,250 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:07,981 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:49:07,982 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:49:08,299 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:08,302 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:12,248 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:12,251 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:30,015 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:49:30,015 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:49:30,016 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:49:30,016 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:49:30,017 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:49:30,017 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:49:30,018 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:49:31,379 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:49:31,386 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:49:31,386 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:49:31,387 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:49:34,251 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,253 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,279 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,280 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,295 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,296 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,310 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,326 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,327 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,341 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,343 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,357 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,359 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,373 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,389 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,390 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,405 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,406 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:49:34,420 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:49:34,436 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:55:39,437 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:55:41,391 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:55:41,927 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:55:43,513 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:55:44,805 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:55:56,303 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 20:56:01,896 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:56:03,792 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:56:06,796 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:56:24,883 - server - INFO - [CALL-USER] Creating call-started message: {'id': '80082538-16e4-4707-a08d-65bb264e684e', 'from_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'from_username': 'rezz', 'to_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'message': '', 'timestamp': '2026-01-03T15:26:24.883212+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 20:56:24,883 - server - INFO - [CALL-USER] Sending call-started to receiver: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 20:56:24,884 - server - INFO - [CALL-USER] Sending call-started to caller: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 20:57:54,969 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:57:54,971 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:57:55,290 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:57:55,292 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:57:59,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:57:59,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:19,004 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:58:19,005 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:58:19,005 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:58:19,006 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:58:21,284 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:58:21,295 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:58:21,296 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:58:21,297 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:58:22,313 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:22,354 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:22,375 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:23,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:58:23,261 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:58:23,291 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:58:43,541 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:58:43,861 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:43,989 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:58:44,297 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:58:46,875 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:58:48,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:10,269 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:59:10,575 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:11,051 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:59:11,372 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:13,592 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:15,247 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:30,009 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 20:59:30,010 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 20:59:30,010 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 20:59:31,166 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 20:59:31,172 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 20:59:31,172 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 20:59:31,172 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 20:59:34,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:34,248 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:34,261 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:34,264 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:34,275 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:34,291 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:34,292 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:34,307 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 20:59:34,309 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 20:59:34,327 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:00:33,593 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:00:35,887 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:00:38,912 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:00:40,844 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:00:43,052 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:00:46,050 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:00:49,153 - server - INFO - Received friend request: from_user_id='5ef293b9-7bff-4d41-a7ec-53146d5c33af' from_username='sara' to_user_id=None to_username='rezz'
+2026-01-03 21:01:01,682 - server - INFO - [CALL-USER] Creating call-started message: {'id': 'f5349cd2-1ee0-4a21-85fe-65ca4cb5321e', 'from_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'from_username': 'rezz', 'to_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'message': '', 'timestamp': '2026-01-03T15:31:01.682260+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:01:01,682 - server - INFO - [CALL-USER] Sending call-started to receiver: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:01:01,683 - server - INFO - [CALL-USER] Sending call-started to caller: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:02:20,964 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:02:20,970 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:02:21,289 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:02:21,293 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:02:25,240 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:02:25,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:02:38,946 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:02:38,957 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:02:39,264 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:02:39,296 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:02:43,241 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:02:43,247 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:03:00,980 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:03:01,016 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:03:01,292 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:03:01,323 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:03:05,257 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:03:05,258 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:05:24,595 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:05:30,011 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:05:33,020 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:05:37,403 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:05:39,318 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:05:42,336 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:05:53,249 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:05:54,472 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:05:57,506 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:06:09,816 - server - INFO - [CALL-USER] Creating call-started message: {'id': '432c2479-07a6-44f7-8ed3-a32c6ede0536', 'from_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'from_username': 'rezz', 'to_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'message': '', 'timestamp': '2026-01-03T15:36:09.815905+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:06:09,816 - server - INFO - [CALL-USER] Sending call-started to receiver: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:06:09,817 - server - INFO - [CALL-USER] Sending call-started to caller: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:08:10,080 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:08:10,130 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:08:10,391 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:10,453 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:14,245 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:14,260 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:22,005 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:08:22,006 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 21:08:22,008 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:08:23,354 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 21:08:23,362 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 21:08:23,363 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 21:08:23,363 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 21:08:26,235 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:26,237 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:26,264 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:26,264 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:26,279 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:26,280 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:37,016 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:08:37,017 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 21:08:37,019 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 21:08:37,020 - server - ERROR - Error broadcasting message: sent 1012 (service restart); no close frame received
+2026-01-03 21:08:37,021 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:08:39,920 - server - INFO - Attempting PostgreSQL connection...
+2026-01-03 21:08:39,938 - postgres_db - ERROR - Failed to connect to PostgreSQL: [Errno 11001] getaddrinfo failed
+2026-01-03 21:08:39,939 - server - ERROR - PostgreSQL connection failed: [Errno 11001] getaddrinfo failed
+2026-01-03 21:08:39,940 - server - WARNING - [WARNING] Using InMemoryDB (data will be lost on restart)
+2026-01-03 21:08:40,338 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:40,432 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:40,495 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:08:41,258 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:41,286 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:08:41,304 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:01,976 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:10:01,983 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:10:02,296 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:02,298 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:06,244 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:06,246 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:09,016 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:10:09,037 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:10:09,333 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:09,348 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:13,243 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:13,245 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:13,979 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:10:13,988 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:10:14,300 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:14,301 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:18,248 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:18,250 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:41,199 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:10:43,749 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:46,755 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:10:53,735 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:10:55,743 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:10:58,781 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:11:03,105 - server - INFO - Received friend request: from_user_id='198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0' from_username='rezz' to_user_id=None to_username='sara'
+2026-01-03 21:11:15,454 - server - INFO - [CALL-USER] Creating call-started message: {'id': 'ab279d2c-4a2a-418e-bc09-362d2d11e0bd', 'from_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'from_username': 'sara', 'to_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'message': '', 'timestamp': '2026-01-03T15:41:15.454370+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:11:15,455 - server - INFO - [CALL-USER] Sending call-started to receiver: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:11:15,456 - server - INFO - [CALL-USER] Sending call-started to caller: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:14:33,367 - server - INFO - [CALL-USER] Creating call-started message: {'id': 'c49fb259-6d9c-428b-8d4c-24236e6e8a2b', 'from_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'from_username': 'sara', 'to_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'message': '', 'timestamp': '2026-01-03T15:44:33.367681+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:14:33,369 - server - INFO - [CALL-USER] Sending call-started to receiver: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:14:33,369 - server - INFO - [CALL-USER] Sending call-started to caller: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:16:14,797 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:16:16,857 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:16:19,883 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:16:22,368 - server - INFO - [CALL-USER] Creating call-started message: {'id': '53b3da4c-f4e1-4b4e-b96c-0d4f31fbbeb4', 'from_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'from_username': 'sara', 'to_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'message': '', 'timestamp': '2026-01-03T15:46:22.368045+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:16:22,368 - server - INFO - [CALL-USER] Sending call-started to receiver: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:16:22,369 - server - INFO - [CALL-USER] Sending call-started to caller: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:16:28,784 - server - INFO - [END-CALL] Creating call log: {'id': '109fa37b-abb5-44c2-8e4d-43013312ca7b', 'from_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'from_username': 'rezz', 'to_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'message': '', 'timestamp': '2026-01-03T15:46:28.784297+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'completed', 'duration': 2}
+2026-01-03 21:16:28,785 - server - INFO - [END-CALL] Saved to database
+2026-01-03 21:16:28,785 - server - INFO - [END-CALL] Attempting to send call-ended to user: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:16:28,785 - server - INFO - [END-CALL] Active connections: ['198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', '5ef293b9-7bff-4d41-a7ec-53146d5c33af']
+2026-01-03 21:16:28,786 - server - INFO - [END-CALL] Is remote user connected? True
+2026-01-03 21:16:28,786 - server - INFO - [END-CALL] Successfully sent call-ended to 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:16:28,787 - server - INFO - [END-CALL] Sending call log message to both users
+2026-01-03 21:16:35,742 - server - INFO - [CALL-USER] Creating call-started message: {'id': '1d7dc570-7c4a-4568-9c1c-6be6ed30aa80', 'from_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'from_username': 'sara', 'to_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'message': '', 'timestamp': '2026-01-03T15:46:35.742124+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'ongoing', 'duration': None}
+2026-01-03 21:16:35,742 - server - INFO - [CALL-USER] Sending call-started to receiver: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:16:35,743 - server - INFO - [CALL-USER] Sending call-started to caller: 5ef293b9-7bff-4d41-a7ec-53146d5c33af
+2026-01-03 21:16:44,283 - server - INFO - [END-CALL] Creating call log: {'id': '13965550-bf02-4502-9f63-6a2a3ba581d2', 'from_user_id': '5ef293b9-7bff-4d41-a7ec-53146d5c33af', 'from_username': 'sara', 'to_user_id': '198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', 'message': '', 'timestamp': '2026-01-03T15:46:44.282936+00:00', 'read': False, 'deleted': False, 'edited_at': None, 'file_url': None, 'file_type': None, 'file_name': None, 'reactions': {}, 'reply_to_id': None, 'reply_to_text': None, 'reply_to_username': None, 'type': 'call-log', 'call_status': 'completed', 'duration': 2}
+2026-01-03 21:16:44,286 - server - INFO - [END-CALL] Saved to database
+2026-01-03 21:16:44,290 - server - INFO - [END-CALL] Attempting to send call-ended to user: 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:16:44,291 - server - INFO - [END-CALL] Active connections: ['198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0', '5ef293b9-7bff-4d41-a7ec-53146d5c33af']
+2026-01-03 21:16:44,293 - server - INFO - [END-CALL] Is remote user connected? True
+2026-01-03 21:16:44,296 - server - INFO - [END-CALL] Successfully sent call-ended to 198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0
+2026-01-03 21:16:44,301 - server - INFO - [END-CALL] Sending call log message to both users
+2026-01-03 21:18:28,099 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:18:28,417 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:18:29,025 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:18:29,341 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:18:32,242 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:18:33,245 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:18:52,377 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:18:52,701 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:18:54,438 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:18:54,760 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:18:55,705 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:18:58,554 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:19:31,555 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:19:33,974 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:19:37,791 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) connected
+2026-01-03 21:19:37,843 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 21:19:40,279 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:19:43,301 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 21:21:50,568 - server - INFO - User rezz (198e8ab1-3a9a-42bd-ba7a-6936cd94b2f0) disconnected
+2026-01-03 21:39:22,194 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 22:21:32,275 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 22:21:34,243 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 23:26:03,941 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected
+2026-01-03 23:26:05,998 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 23:26:09,008 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) connected
+2026-01-03 23:56:39,988 - server - INFO - User sara (5ef293b9-7bff-4d41-a7ec-53146d5c33af) disconnected

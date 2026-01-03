@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Users, CheckCircle2, XCircle } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
 export const UserList = ({ users, currentUser, selectedUser, onSelectUser }) => {
   return (
@@ -58,6 +60,13 @@ export const UserList = ({ users, currentUser, selectedUser, onSelectUser }) => 
               <div className="flex items-center space-x-3">
                 <div className="relative flex-shrink-0">
                   <Avatar className="h-10 w-10">
+                    {user.avatar_url && (
+                      <AvatarImage 
+                        src={`${BACKEND_URL}${user.avatar_url}`} 
+                        alt={user.username} 
+                        className="object-cover"
+                      />
+                    )}
                     <AvatarFallback className={selectedUser?.id === user.id ? "bg-white/20 text-white font-semibold" : "bg-gradient-to-br from-blue-400 to-purple-500 text-white font-semibold"}>
                       {user.username[0].toUpperCase()}
                     </AvatarFallback>

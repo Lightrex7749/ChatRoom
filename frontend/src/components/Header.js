@@ -2,9 +2,12 @@ import { LogOut, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import OfflineMessages from "@/components/OfflineMessages";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
 export const Header = ({ user, onLeave, isConnected }) => {
   const { theme, toggleTheme } = useTheme();
@@ -48,11 +51,18 @@ export const Header = ({ user, onLeave, isConnected }) => {
         <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
           {/* User Profile - Compact */}
           <div className="flex items-center space-x-2 px-2 sm:px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-all duration-200 cursor-pointer backdrop-blur-sm border border-white/10">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-white to-gray-100 dark:from-gray-600 dark:to-gray-800 flex items-center justify-center shadow-md ring-2 ring-white/20 flex-shrink-0">
-              <span className="text-[#008069] dark:text-white text-xs sm:text-sm font-bold">
+            <Avatar className="w-7 h-7 sm:w-8 sm:h-8 shadow-md ring-2 ring-white/20">
+              {user.avatar_url && (
+                <AvatarImage 
+                  src={`${BACKEND_URL}${user.avatar_url}`} 
+                  alt={user.username} 
+                  className="object-cover"
+                />
+              )}
+              <AvatarFallback className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-600 dark:to-gray-800 text-[#008069] dark:text-white text-xs sm:text-sm font-bold">
                 {user.username[0].toUpperCase()}
-              </span>
-            </div>
+              </AvatarFallback>
+            </Avatar>
             <span className="hidden md:block text-sm font-semibold text-white truncate max-w-[100px]">
               {user.username}
             </span>

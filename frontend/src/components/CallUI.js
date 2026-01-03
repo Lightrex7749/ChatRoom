@@ -193,7 +193,7 @@ export const CallUI = ({
             )}
 
             {/* Local Video (Picture-in-picture) */}
-            {localStream && isVideoEnabled && (
+            {localStream && (localStream.getVideoTracks().length > 0 || isVideoEnabled) && (
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -204,12 +204,15 @@ export const CallUI = ({
                   autoPlay
                   playsInline
                   muted
-                  className="w-full h-full object-cover mirror"
+                  className={`w-full h-full object-cover mirror ${!isVideoEnabled ? 'hidden' : ''}`}
                   data-testid="local-video"
                 />
                 {!isVideoEnabled && (
-                  <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
-                    <VideoOff className="w-8 h-8 text-gray-400" />
+                  <div className="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center space-y-2">
+                    <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center border border-white/10">
+                      <VideoOff className="w-6 h-6 text-gray-400" />
+                    </div>
+                    <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Video Off</span>
                   </div>
                 )}
               </motion.div>

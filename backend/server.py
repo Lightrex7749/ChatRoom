@@ -270,9 +270,18 @@ class ConnectionManager:
     async def connect(self, websocket: WebSocket, user_id: str, username: str):
         await websocket.accept()
         self.active_connections[user_id] = websocket
+        
+        # Fetch user details (like avatar) from DB if possible, or use defaults
+        avatar_url = None
+        if db is not None:
+            user = await db.users.find_one({"id": user_id})
+            if user:
+                avatar_url = user.get("avatar_url")
+
         self.users[user_id] = {
             "id": user_id,
             "username": username,
+            "avatar_url": avatar_url,
             "connected_at": datetime.now(timezone.utc).isoformat()
         }
         logger.info(f"User {username} ({user_id}) connected")
@@ -310,6 +319,7 @@ manager = ConnectionManager()
 class UserCreate(BaseModel):
     username: str
     password: str
+    avatar_url: Optional[str] = None
 
 class UserLogin(BaseModel):
     username: str
@@ -318,7 +328,11 @@ class UserLogin(BaseModel):
 class User(BaseModel):
     id: str
     username: str
+    avatar_url: Optional[str] = None
     created_at: str
+
+class UserUpdate(BaseModel):
+    avatar_url: Optional[str] = None
 
 class Message(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -441,6 +455,7 @@ async def register(user: UserCreate):
             "id": user_id,
             "username": user.username,
             "hashed_password": hashed_password,
+            "avatar_url": user.avatar_url,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
         
@@ -449,6 +464,7 @@ async def register(user: UserCreate):
         return User(
             id=user_id,
             username=user.username,
+            avatar_url=user.avatar_url,
             created_at=new_user["created_at"]
         )
     except HTTPException:
@@ -472,7 +488,39 @@ async def login(user_in: UserLogin):
     return User(
         id=user["id"],
         username=user["username"],
+        avatar_url=user.get("avatar_url"),
         created_at=user["created_at"]
+    )
+
+@api_router.put("/users/{user_id}/profile", response_model=User)
+async def update_profile(user_id: str, user_update: UserUpdate):
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database not available")
+    
+    user = await db.users.find_one({"id": user_id})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    update_data = {}
+    if user_update.avatar_url is not None:
+        update_data["avatar_url"] = user_update.avatar_url
+    
+    if update_data:
+        await db.users.update_one(
+            {"id": user_id},
+            {"$set": update_data}
+        )
+        # Update connection manager cache
+        if user_id in manager.users:
+            manager.users[user_id].update(update_data)
+            await manager.broadcast_users_update()
+    
+    updated_user = await db.users.find_one({"id": user_id})
+    return User(
+        id=updated_user["id"],
+        username=updated_user["username"],
+        avatar_url=updated_user.get("avatar_url"),
+        created_at=updated_user["created_at"]
     )
 
 @api_router.get("/messages/unread/{user_id}")

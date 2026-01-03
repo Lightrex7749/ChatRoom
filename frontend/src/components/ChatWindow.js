@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X, ArrowLeft, Edit2, Camera, Reply, Mic, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";
 import axios from "axios";
 
@@ -414,6 +414,13 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
             )}
             <div className="relative flex-shrink-0">
               <Avatar className="h-10 w-10 sm:h-11 sm:w-11 ring-2 ring-white/50 dark:ring-gray-700/50">
+                {selectedUser.avatar_url && (
+                  <AvatarImage 
+                    src={`${BACKEND_URL}${selectedUser.avatar_url}`} 
+                    alt={selectedUser.username} 
+                    className="object-cover"
+                  />
+                )}
                 <AvatarFallback className="bg-gradient-to-br from-[#008069] via-[#00a884] to-[#00bfa5] text-white font-bold">
                   {selectedUser.username[0].toUpperCase()}
                 </AvatarFallback>
@@ -540,6 +547,13 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                 }`}>
                   {!isOwn && (
                     <Avatar className="h-8 w-8">
+                      {selectedUser.avatar_url && (
+                        <AvatarImage 
+                          src={`${BACKEND_URL}${selectedUser.avatar_url}`} 
+                          alt={msg.from_username} 
+                          className="object-cover"
+                        />
+                      )}
                       <AvatarFallback className="bg-gradient-to-br from-gray-400 to-gray-600 text-white text-xs">
                         {msg.from_username[0].toUpperCase()}
                       </AvatarFallback>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Users, UserPlus, MessageSquare, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import axios from "axios";
 import { toast } from "sonner";
 
@@ -164,14 +165,23 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
                 <div className="flex items-center space-x-3">
                   {/* Avatar */}
                   <div className="flex-shrink-0 relative">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#008069] via-[#00a884] to-[#00bfa5] flex items-center justify-center text-white font-bold text-xl shadow-lg ring-2 ring-white/20 dark:ring-gray-700/50">
-                      {friend.friend_username?.substring(0, 1).toUpperCase() || '?'}
-                    </div>
+                    <Avatar className="w-14 h-14 shadow-lg ring-2 ring-white/20 dark:ring-gray-700/50">
+                      {friend.avatar_url && (
+                        <AvatarImage 
+                          src={`${BACKEND_URL}${friend.avatar_url}`} 
+                          alt={friend.friend_username} 
+                          className="object-cover"
+                        />
+                      )}
+                      <AvatarFallback className="bg-gradient-to-br from-[#008069] via-[#00a884] to-[#00bfa5] text-white font-bold text-xl">
+                        {friend.friend_username?.substring(0, 1).toUpperCase() || '?'}
+                      </AvatarFallback>
+                    </Avatar>
                     {/* Online/Offline indicator */}
                     {friend.is_online ? (
-                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-[#111b21] animate-pulse"></div>
+                      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white dark:border-[#111b21] animate-pulse"></div>
                     ) : (
-                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-gray-400 rounded-full border-2 border-white dark:border-[#111b21]"></div>
+                      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-gray-400 rounded-full border-2 border-white dark:border-[#111b21]"></div>
                     )}
                   </div>
                   
@@ -217,9 +227,18 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
               >
                 <div className="flex items-center space-x-3 mb-3">
                   {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-white font-semibold text-lg shadow-sm">
-                    {request.username?.substring(0, 1).toUpperCase() || '?'}
-                  </div>
+                  <Avatar className="w-12 h-12 shadow-sm">
+                    {request.avatar_url && (
+                      <AvatarImage 
+                        src={`${BACKEND_URL}${request.avatar_url}`} 
+                        alt={request.username} 
+                        className="object-cover"
+                      />
+                    )}
+                    <AvatarFallback className="bg-gradient-to-br from-gray-400 to-gray-600 text-white font-semibold text-lg">
+                      {request.username?.substring(0, 1).toUpperCase() || '?'}
+                    </AvatarFallback>
+                  </Avatar>
                   
                   {/* Request Info */}
                   <div className="flex-1">
