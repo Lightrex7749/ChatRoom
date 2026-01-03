@@ -1,53 +1,77 @@
-# ConnectHub - Real-Time Messaging Platform
+# ConnectHub - Real-Time Messaging Platform 💬
 
-ConnectHub is a modern real-time messaging application that allows users to stay connected with their friends anytime, anywhere. Whether online or offline, your messages are always safe and waiting.
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://your-app.vercel.app)
+[![GitHub](https://img.shields.io/badge/github-repo-blue)](https://github.com/Lightrex7749/ChatRoom)
 
-## 🎯 Key Features
+ConnectHub is a modern, WhatsApp-style real-time messaging application that allows users to stay connected with their friends anytime, anywhere. Built with React, FastAPI, and MongoDB.
 
-### Real-Time Messaging
-- Instant message delivery using WebSocket technology
+## ✨ Features
+
+### 💬 Real-Time Communication
+- Instant messaging with WebSocket
 - Online/offline status tracking
 - Typing indicators
-- Live user presence list
+- Message reactions (emojis)
+- Reply to messages
+- Edit & delete messages
+- File uploads (images, videos, documents)
 
-### Friend System
-- Send and manage friend requests
-- Accept/decline friend invitations
-- View friends list with online status
+### 👥 Friend System
+- Send/accept friend requests
+- Online status indicators (green = online, gray = offline)
+- Real-time friend list updates
 - Easy friend discovery
 
-### Offline Messaging
-- Send messages when friends are offline
-- Messages persist in database
-- Unread message notifications
-- Complete chat history
-- Read receipts for messages
-
-### UI/UX
+### 🎨 Modern UI/UX
+- WhatsApp-inspired design
 - Dark mode support
-- Responsive mobile design
+- Fully responsive (mobile & desktop)
 - Smooth animations with Framer Motion
-- Modern gradient design
-- Real-time updates
+- Gradient themes
+- Message bubbles with timestamps
+
+### 📹 Advanced Features
+- Video calling support (WebRTC)
+- Offline message delivery
+- Unread message notifications
+- Message persistence
+- Auto-reconnection
 
 ## 🛠️ Tech Stack
 
 **Frontend:**
 - React 19, Tailwind CSS, Framer Motion
-- Radix UI, Axios, WebSocket
+- Radix UI Components, Axios, WebSocket Client
 
 **Backend:**
-- FastAPI, MongoDB, Motor
-- Python 3.13, WebSockets, CORS
+- FastAPI, MongoDB/PostgreSQL
+- Python 3.13, WebSockets, Motor (async MongoDB driver)
 
-## 🚀 Quick Start
+## 🚀 Deployment
+
+### Quick Deploy (Recommended)
+
+**See [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) for fastest deployment!**
+
+1. **Database**: MongoDB Atlas (Free tier)
+2. **Backend**: Render (Free tier) 
+3. **Frontend**: Vercel (Free tier)
+
+Total time: ~15 minutes | Total cost: $0
+
+### Detailed Guide
+
+See [DEPLOY.md](./DEPLOY.md) for complete step-by-step instructions.
+
+## 💻 Local Development
 
 ```bash
 # Backend
-cd backend && pip install -r requirements.txt
-uvicorn server:app --port 8000
+cd backend
+pip install -r requirements.txt
+python server.py
 
-# Frontend  
+# Frontend (new terminal)  
 cd frontend && npm install --legacy-peer-deps
 npm start -- --port 3001
 ```
