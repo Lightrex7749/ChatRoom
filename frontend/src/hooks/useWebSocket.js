@@ -3,6 +3,13 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const WS_URL = BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://');
 
+// Exponential backoff for reconnection
+const getReconnectDelay = (attemptCount) => {
+  const maxDelay = 30000; // Max 30 seconds
+  const delay = Math.min(1000 * Math.pow(2, attemptCount), maxDelay);
+  return delay + Math.random() * 1000; // Add jitter
+};
+
 export const useWebSocket = (user) => {
   const [isConnected, setIsConnected] = useState(false);
   const [users, setUsers] = useState([]);
@@ -12,6 +19,7 @@ export const useWebSocket = (user) => {
   const wsRef = useRef(null);
   const reconnectTimeoutRef = useRef(null);
   const messageHandlersRef = useRef({});
+  const reconnectAttemptsRef = useRef(0);
 
   const connect = useCallback(() => {
     if (!user) return;
@@ -22,6 +30,7 @@ export const useWebSocket = (user) => {
       ws.onopen = () => {
         console.log("WebSocket connected");
         setIsConnected(true);
+        reconnectAttemptsRef.current = 0; // Reset reconnect attempts on success
       };
 
       ws.onmessage = (event) => {
@@ -131,13 +140,17 @@ export const useWebSocket = (user) => {
       };
 
       ws.onclose = () => {
-        console.log("WebSocket disconnected");
+        console.log("WebSocket disconnected, attempting to reconnect...");
         setIsConnected(false);
         
-        // Reconnect after 3 seconds
+        // Exponential backoff reconnection
+        const delay = getReconnectDelay(reconnectAttemptsRef.current);
+        console.log(`Reconnecting in ${Math.round(delay)}ms (attempt ${reconnectAttemptsRef.current + 1})`);
+        
         reconnectTimeoutRef.current = setTimeout(() => {
+          reconnectAttemptsRef.current += 1;
           connect();
-        }, 3000);
+        }, delay);
       };
 
       wsRef.current = ws;

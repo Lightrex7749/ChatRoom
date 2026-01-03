@@ -204,8 +204,12 @@ async def init_db():
             logger.info("Attempting MongoDB connection...")
             global client
             client = AsyncIOMotorClient(
-                mongo_url, 
-                serverSelectionTimeoutMS=2000,
+                mongo_url,
+                serverSelectionTimeoutMS=10000,  # Increased from 2s to 10s for deployed servers
+                connectTimeoutMS=10000,  # Connection timeout
+                socketTimeoutMS=30000,  # Socket timeout for operations
+                retryWrites=True,  # Retry failed writes
+                maxPoolSize=50,  # Connection pooling
                 tlsCAFile=certifi.where(),
                 tlsAllowInvalidCertificates=True
             )
