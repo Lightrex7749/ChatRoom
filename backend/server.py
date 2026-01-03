@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, HTTPException, status, File, UploadFile
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
@@ -249,6 +250,27 @@ async def shutdown_event():
 
 # Mount static files for serving uploaded files
 app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+
+# Serve React Frontend
+# We expect the frontend build to be in the 'frontend/build' directory relative to the project root
+# When running server.py from backend/ dir, it is ../frontend/build
+FRONTEND_BUILD_DIR = ROOT_DIR.parent / "frontend" / "build"
+
+if FRONTEND_BUILD_DIR.exists():
+    # Mount static assets (JS, CSS, media)
+    app.mount("/static", StaticFiles(directory=str(FRONTEND_BUILD_DIR / "static")), name="static")
+    
+    # Catch-all route to serve index.html for React Router
+    @app.get("/{full_path:path}")
+    async def serve_react_app(full_path: str):
+        # Allow API calls to pass through
+        if full_path.startswith("api/") or full_path.startswith("uploads/"):
+             raise HTTPException(status_code=404, detail="Not found")
+             
+        # Serve index.html
+        return FileResponse(str(FRONTEND_BUILD_DIR / "index.html"))
+else:
+    logger.warning(f"Frontend build directory not found at {FRONTEND_BUILD_DIR}. API only mode.")
 
 # Add CORS middleware BEFORE including routers
 app.add_middleware(
