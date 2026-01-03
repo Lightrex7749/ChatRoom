@@ -41,6 +41,9 @@ export const CallUI = ({
     }
   }, [remoteStream]);
 
+  // Check if remote stream has video tracks
+  const hasRemoteVideo = remoteStream && remoteStream.getVideoTracks().length > 0;
+
   // Incoming call modal
   if (incomingCall && callState === "idle") {
     return (
@@ -131,7 +134,7 @@ export const CallUI = ({
             </p>
           </div>
           <Button
-            onClick={onEnd}
+            onClick={() => onEnd()}
             variant="ghost"
             size="icon"
             className="text-white hover:bg-white/10 rounded-full"
@@ -142,33 +145,55 @@ export const CallUI = ({
 
         {/* Video Grid */}
         <div className="flex-1 relative p-4">
-          {/* Remote Video (Full screen) */}
+          {/* Remote Video (Full screen) or Placeholder */}
           <div className="w-full h-full bg-gray-900 rounded-2xl overflow-hidden relative">
-            {remoteStream ? (
-              <video
-                ref={remoteVideoRef}
-                autoPlay
-                playsInline
-                className="w-full h-full object-cover"
-                data-testid="remote-video"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto">
-                    <span className="text-4xl text-white">
-                      {callerName?.[0]?.toUpperCase()}
-                    </span>
+            {/* Always render video element for audio playback, hide if no video track */}
+            <video
+              ref={remoteVideoRef}
+              autoPlay
+              playsInline
+              className={`w-full h-full object-cover ${!hasRemoteVideo ? 'hidden' : ''}`}
+              data-testid="remote-video"
+            />
+
+            {/* Placeholder / Voice Call UI */}
+            {(!hasRemoteVideo || !remoteStream) && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+                <div className="text-center space-y-6">
+                  <div className="relative">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto shadow-2xl ring-4 ring-white/10">
+                      <span className="text-5xl text-white font-bold">
+                        {callerName?.[0]?.toUpperCase()}
+                      </span>
+                    </div>
+                    {/* Pulse animation for active voice call */}
+                    {callState === "active" && (
+                      <motion.div
+                        className="absolute inset-0 rounded-full border-4 border-green-500"
+                        animate={{ scale: [1, 1.2, 1], opacity: [1, 0, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
                   </div>
-                  <p className="text-white text-lg">
-                    {callState === "calling" ? "Calling..." : "Connecting..."}
-                  </p>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{callerName}</h3>
+                    <p className="text-gray-400 text-lg">
+                      {callState === "calling" && "Calling..."}
+                      {callState === "connecting" && "Connecting..."}
+                      {callState === "active" && (hasRemoteVideo ? "Video Paused" : "Voice Call Active")}
+                    </p>
+                    {callState === "active" && (
+                      <p className="text-white/80 font-mono mt-2 text-xl bg-white/10 inline-block px-4 py-1 rounded-full">
+                        {formatDuration(callDuration)}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
 
             {/* Local Video (Picture-in-picture) */}
-            {localStream && (
+            {localStream && isVideoEnabled && (
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -216,7 +241,7 @@ export const CallUI = ({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Button
               data-testid="end-call-button"
-              onClick={onEnd}
+              onClick={() => onEnd()}
               className="w-16 h-16 rounded-full bg-red-500 hover:bg-red-600 shadow-lg"
               size="icon"
             >
