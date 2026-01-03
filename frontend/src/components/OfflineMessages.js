@@ -4,7 +4,7 @@ import { MessageSquare, Bell, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
 export const OfflineMessages = ({ user, onMessageSelect }) => {
   const [offlineMessages, setOfflineMessages] = useState([]);

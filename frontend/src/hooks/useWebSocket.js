@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const WS_URL = BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://');
 
 export const useWebSocket = (user) => {
@@ -61,6 +61,22 @@ export const useWebSocket = (user) => {
               setMessages(prev => 
                 prev.map(m => 
                   m.id === data.message_id ? { ...m, deleted: true } : m
+                )
+              );
+              break;
+
+            case "edit-message":
+              setMessages(prev => 
+                prev.map(m => 
+                  m.id === data.message_id ? { ...m, message: data.new_message, edited_at: data.edited_at } : m
+                )
+              );
+              break;
+
+            case "message-reaction":
+              setMessages(prev => 
+                prev.map(m => 
+                  m.id === data.message_id ? { ...m, reactions: data.reactions } : m
                 )
               );
               break;

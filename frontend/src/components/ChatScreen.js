@@ -65,12 +65,12 @@ export const ChatScreen = ({ user, onLeave }) => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <div className="h-screen flex flex-col bg-white dark:bg-[#0b141a] overflow-hidden">
       <Header user={user} onLeave={onLeave} isConnected={isConnected} />
       
       <div className="flex-1 flex overflow-hidden flex-col lg:flex-row gap-0">
         {/* Friends Panel - Always visible on mobile, sidebar on desktop */}
-        <div className={`${selectedUser ? 'hidden lg:flex' : 'flex'} w-full lg:w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-col`}>
+        <div className={`${selectedUser ? 'hidden lg:flex' : 'flex'} w-full lg:w-80 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111b21] flex-col`}>
           <FriendsPanel 
             user={user}
             onSelectFriend={(friend) => {

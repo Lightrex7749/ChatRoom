@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { toast } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
 export const FriendsPanel = ({ user, onSelectFriend }) => {
   const [friends, setFriends] = useState([]);
@@ -18,8 +18,11 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
     if (user?.id) {
       loadFriends();
       loadFriendRequests();
-      // Poll for new requests every 5 seconds
-      const interval = setInterval(loadFriendRequests, 5000);
+      // Poll for new requests and friends status every 5 seconds
+      const interval = setInterval(() => {
+        loadFriendRequests();
+        loadFriends(); // Refresh to update online status
+      }, 5000);
       return () => clearInterval(interval);
     }
   }, [user?.id]);
@@ -81,38 +84,40 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="h-full flex flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700"
+      className="h-full flex flex-col bg-white dark:bg-[#111b21] border-r border-gray-200 dark:border-gray-700"
     >
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center space-x-2 mb-4">
-          <Users className="w-5 h-5 text-blue-500" />
-          <h2 className="font-bold text-lg">Friends</h2>
+      <div className="p-5 bg-gradient-to-br from-[#f0f2f5] via-white to-[#f0f2f5] dark:from-[#202c33] dark:via-[#1a252d] dark:to-[#202c33] border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="flex items-center space-x-3 mb-4">
+          <div className="p-2 rounded-xl bg-gradient-to-br from-[#008069] to-[#00a884] shadow-md">
+            <Users className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="font-bold text-xl text-gray-900 dark:text-white">Contacts</h2>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4 p-1 bg-gray-100 dark:bg-[#111b21] rounded-xl">
           <button
             onClick={() => setTab("friends")}
-            className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
+            className={`flex-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
               tab === "friends"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                ? "bg-gradient-to-r from-[#008069] to-[#00a884] text-white shadow-lg scale-105"
+                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#1a2930]"
             }`}
           >
-            Friends ({friends.length})
+            Chats ({friends.length})
           </button>
           <button
             onClick={() => setTab("requests")}
-            className={`px-3 py-1 rounded-lg text-sm font-medium transition relative ${
+            className={`flex-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 relative ${
               tab === "requests"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                ? "bg-gradient-to-r from-[#008069] to-[#00a884] text-white shadow-lg scale-105"
+                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#1a2930]"
             }`}
           >
             Requests
             {friendRequests.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                 {friendRequests.length}
               </span>
             )}
@@ -132,7 +137,7 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
             <Button
               type="submit"
               size="sm"
-              className="w-full bg-blue-500 hover:bg-blue-600"
+              className="w-full bg-gradient-to-r from-[#008069] to-[#00a884] hover:from-[#017561] hover:to-[#009774] text-white shadow-lg hover:shadow-xl transition-all duration-200 font-semibold"
             >
               <UserPlus className="w-4 h-4 mr-2" />
               Send Request
@@ -151,19 +156,46 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
                 key={friend.friend_id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.01, x: 4 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => onSelectFriend(friend)}
-                className="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-left"
+                className="w-full p-4 bg-white dark:bg-[#111b21] hover:bg-gradient-to-r hover:from-[#f0f2f5] hover:to-white dark:hover:from-[#202c33] dark:hover:to-[#2a3942] transition-all duration-200 text-left border-b border-gray-100 dark:border-gray-800 min-h-[76px] cursor-pointer"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      {friend.friend_username}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      Click to chat
+                <div className="flex items-center space-x-3">
+                  {/* Avatar */}
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#008069] via-[#00a884] to-[#00bfa5] flex items-center justify-center text-white font-bold text-xl shadow-lg ring-2 ring-white/20 dark:ring-gray-700/50">
+                      {friend.friend_username?.substring(0, 1).toUpperCase() || '?'}
+                    </div>
+                    {/* Online/Offline indicator */}
+                    {friend.is_online ? (
+                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-[#111b21] animate-pulse"></div>
+                    ) : (
+                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-gray-400 rounded-full border-2 border-white dark:border-[#111b21]"></div>
+                    )}
+                  </div>
+                  
+                  {/* User Info */}
+                  <div className="flex-1 overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <p className="font-medium text-gray-900 dark:text-white truncate">
+                        {friend.friend_username}
+                      </p>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0 ml-2">
+                        {friend.is_online ? (
+                          <span className="text-green-600 dark:text-green-400">● online</span>
+                        ) : (
+                          <span className="text-gray-400">○ offline</span>
+                        )}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">
+                      <span className="inline-block mr-1">✓✓</span>
+                      Click to start chatting
                     </p>
                   </div>
-                  <MessageSquare className="w-4 h-4 text-blue-500" />
+                  
+                  <MessageSquare className="w-4 h-4 text-[#008069] flex-shrink-0" />
                 </div>
               </motion.button>
             ))
@@ -181,21 +213,30 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
                 key={request.user_id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
+                className="p-3 bg-white dark:bg-[#111b21] border-b border-gray-100 dark:border-gray-800"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <p className="font-medium text-gray-900 dark:text-white">
-                    {request.username}
-                  </p>
+                <div className="flex items-center space-x-3 mb-3">
+                  {/* Avatar */}
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-white font-semibold text-lg shadow-sm">
+                    {request.username?.substring(0, 1).toUpperCase() || '?'}
+                  </div>
+                  
+                  {/* Request Info */}
+                  <div className="flex-1">
+                    <p className="font-medium text-gray-900 dark:text-white">
+                      {request.username}
+                    </p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Wants to connect
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
-                  Wants to be your friend
-                </p>
+                
                 <div className="flex gap-2">
                   <Button
                     size="sm"
                     onClick={() => handleAcceptRequest(request.user_id)}
-                    className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+                    className="flex-1 bg-[#008069] hover:bg-[#017561] text-white h-9"
                   >
                     <Check className="w-3 h-3 mr-1" />
                     Accept
@@ -203,7 +244,7 @@ export const FriendsPanel = ({ user, onSelectFriend }) => {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="flex-1"
+                    className="flex-1 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#202c33] h-9"
                   >
                     <X className="w-3 h-3 mr-1" />
                     Decline

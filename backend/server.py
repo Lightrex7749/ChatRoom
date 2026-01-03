@@ -137,6 +137,7 @@ class InMemoryCursor:
         
         if self._sort_key:
             results.sort(key=lambda x: x.get(self._sort_key, ""), reverse=(self._sort_dir == -1))
+
         
         self._results = results
 
@@ -165,7 +166,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("backend.log"),
+        logging.FileHandler("backend.log", encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -192,7 +193,7 @@ async def init_db():
             postgres_db = PostgresDB(database_url)
             await postgres_db.connect()
             db = postgres_db
-            logger.info("✅ PostgreSQL connected successfully")
+            logger.info("[OK] PostgreSQL connected successfully")
             return
         except Exception as e:
             logger.error(f"PostgreSQL connection failed: {e}")
@@ -209,13 +210,13 @@ async def init_db():
                 tlsAllowInvalidCertificates=True
             )
             db = client[db_name]
-            logger.info("✅ MongoDB connected")
+            logger.info("[OK] MongoDB connected")
             return
         except Exception as e:
             logger.warning(f"MongoDB connection failed: {e}")
     
     # Fallback to InMemoryDB
-    logger.warning("⚠️ Using InMemoryDB (data will be lost on restart)")
+    logger.warning("[WARNING] Using InMemoryDB (data will be lost on restart)")
     db = InMemoryDB()
 
 async def close_db():
@@ -293,7 +294,7 @@ class ConnectionManager:
         await self.broadcast(message)
 
     async def broadcast(self, message: dict):
-        for connection in self.active_connections.values():
+        for connection in list(self.active_connections.values()):
             try:
                 await connection.send_text(json.dumps(message))
             except Exception as e:
@@ -328,8 +329,12 @@ class Message(BaseModel):
     deleted: bool = False
     edited_at: str | None = None
     file_url: str | None = None
-    file_type: str | None = None  # "image", "video", "file"
+    file_type: str | None = None  # "image", "video", "file", "audio"
     file_name: str | None = None
+    reactions: Dict[str, List[str]] = Field(default_factory=dict)  # emoji -> [user_ids]
+    reply_to_id: str | None = None  # ID of message being replied to
+    reply_to_text: str | None = None  # Original message text
+    reply_to_username: str | None = None  # Original sender username
 
 class MessageCreate(BaseModel):
     from_user_id: str
@@ -339,6 +344,15 @@ class MessageCreate(BaseModel):
     file_url: str | None = None
     file_type: str | None = None
     file_name: str | None = None
+    reply_to_id: str | None = None
+    reply_to_text: str | None = None
+    reply_to_username: str | None = None
+
+class MessageEdit(BaseModel):
+    message: str
+
+class MessageReaction(BaseModel):
+    emoji: str
 
 class Friend(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -454,6 +468,22 @@ async def login(user_in: UserLogin):
         created_at=user["created_at"]
     )
 
+@api_router.get("/messages/unread/{user_id}")
+async def get_unread_messages(user_id: str):
+    """Get all unread messages for a user (offline messages)"""
+    if db is None:
+        return []
+    
+    try:
+        unread = await db.messages.find({
+            "to_user_id": user_id,
+            "read": False
+        }, {"_id": 0}).sort("timestamp", 1).to_list(1000)
+        return unread
+    except Exception as e:
+        logger.error(f"Error fetching unread messages: {e}")
+        return []
+
 @api_router.get("/messages/{user1_id}/{user2_id}", response_model=List[Message])
 async def get_messages(user1_id: str, user2_id: str):
     if db is None:
@@ -484,23 +514,34 @@ async def create_message(message_input: MessageCreate):
 
 # Friends Management Endpoints
 @api_router.post("/friends/request")
-async def send_friend_request(request: FriendRequest):
+async def send_friend_request(req_data: FriendRequest):
     """Send a friend request"""
+    logger.info(f"Received friend request: {req_data}")
     if db is None:
         raise HTTPException(status_code=503, detail="Database not available")
 
-    # Look up the recipient user by username
-    recipient = await db.users.find_one({"username": request.to_username})
+    # Look up the recipient user by username - check WebSocket connections first
+    recipient = await db.users.find_one({"username": req_data.to_username})
+    
+    # If not in db.users, check if they're connected via WebSocket
     if not recipient:
-        raise HTTPException(status_code=404, detail="User not found")
+        # Find user in active connections by username
+        recipient_id = None
+        for user_id, username in manager.active_connections.items():
+            if username == req_data.to_username:
+                recipient_id = user_id
+                break
+        
+        if not recipient_id:
+            raise HTTPException(status_code=404, detail="User not found")
+    else:
+        recipient_id = recipient["id"]
     
-    recipient_id = recipient["id"]
-    
-    if recipient_id == request.from_user_id:
+    if recipient_id == req_data.from_user_id:
         raise HTTPException(status_code=400, detail="Cannot send friend request to yourself")
 
     existing = await db.friends.find_one({
-        "user_id": request.from_user_id,
+        "user_id": req_data.from_user_id,
         "friend_id": recipient_id
     })
     
@@ -509,15 +550,15 @@ async def send_friend_request(request: FriendRequest):
     
     # Store request for BOTH sides (or handle relationally, but here we store simple docs)
     # We'll store a "request" document.
-    friend_request = {
-        "user_id": request.from_user_id,
-        "username": request.from_username,
+    friend_request_doc = {
+        "user_id": req_data.from_user_id,
+        "username": req_data.from_username,
         "friend_id": recipient_id,
-        "friend_username": request.to_username,
+        "friend_username": req_data.to_username,
         "status": "pending",
         "created_at": datetime.now(timezone.utc).isoformat()
     }
-    await db.friends.insert_one(friend_request)
+    await db.friends.insert_one(friend_request_doc)
     return {"status": "success", "message": "Friend request sent"}
 
 @api_router.get("/friends/{user_id}")
@@ -545,7 +586,23 @@ async def get_friends(user_id: str):
             "friend_username": doc["username"]
         })
 
+    # Add online status for each friend
+    for friend in friends_list:
+        friend["is_online"] = friend["friend_id"] in manager.active_connections
+    
     return friends_list
+
+@api_router.get("/users/online")
+async def get_online_users():
+    """Get list of all online users"""
+    online_users = []
+    for user_id, user_info in manager.users.items():
+        online_users.append({
+            "id": user_id,
+            "username": user_info["username"],
+            "is_online": True
+        })
+    return online_users
 
 @api_router.get("/friends/requests/{user_id}")
 async def get_friend_requests(user_id: str):
@@ -576,21 +633,6 @@ async def accept_friend_request(request_from_user_id: str, current_user_id: str)
         return {"status": "success"}
     return {"status": "success"}
 
-@api_router.get("/messages/unread/{user_id}")
-async def get_unread_messages(user_id: str):
-    """Get all unread messages for a user (offline messages)"""
-    if db is None:
-        return []
-    
-    try:
-        unread = await db.messages.find({
-            "to_user_id": user_id,
-            "read": False
-        }, {"_id": 0}).sort("timestamp", 1).to_list(1000)
-        return unread
-    except Exception as e:
-        logger.error(f"Error fetching unread messages: {e}")
-        return []
 
 @api_router.post("/messages/{message_id}/read")
 async def mark_message_read(message_id: str):
@@ -614,14 +656,46 @@ async def delete_message(message_id: str):
     return {"status": "success"}
 
 @api_router.put("/messages/{message_id}")
-async def edit_message(message_id: str, update_data: dict):
+async def edit_message(message_id: str, message_edit: MessageEdit):
     """Edit a message"""
     if db is not None:
         await db.messages.update_one(
             {"id": message_id},
-            {"$set": {"message": update_data.get("message"), "edited_at": datetime.now(timezone.utc).isoformat()}}
+            {"$set": {"message": message_edit.message, "edited_at": datetime.now(timezone.utc).isoformat()}}
         )
     return {"status": "success"}
+
+@api_router.post("/messages/{message_id}/react")
+async def react_to_message(message_id: str, user_id: str, reaction: MessageReaction):
+    """Add or remove a reaction to a message"""
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database not available")
+    
+    message = await db.messages.find_one({"id": message_id})
+    if not message:
+        raise HTTPException(status_code=404, detail="Message not found")
+    
+    reactions = message.get("reactions", {})
+    emoji = reaction.emoji
+    
+    if emoji not in reactions:
+        reactions[emoji] = []
+    
+    # Toggle reaction: remove if exists, add if doesn't
+    if user_id in reactions[emoji]:
+        reactions[emoji].remove(user_id)
+        if not reactions[emoji]:  # Remove emoji if no users
+            del reactions[emoji]
+    else:
+        reactions[emoji].append(user_id)
+    
+    await db.messages.update_one(
+        {"id": message_id},
+        {"$set": {"reactions": reactions}}
+    )
+    
+    return {"status": "success", "reactions": reactions}
+
 # WebSocket Route
 @app.websocket("/api/ws/{user_id}/{username}")
 async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
@@ -633,12 +707,18 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
             msg_type = message_data.get("type")
 
             if msg_type == "send-message":
-                # Create message object
+                # Create message object with optional file data and reply
                 message = Message(
                     from_user_id=message_data["from_user_id"],
                     from_username=message_data["from_username"],
                     to_user_id=message_data["to_user_id"],
-                    message=message_data["message"]
+                    message=message_data["message"],
+                    file_url=message_data.get("file_url"),
+                    file_type=message_data.get("file_type"),
+                    file_name=message_data.get("file_name"),
+                    reply_to_id=message_data.get("reply_to_id"),
+                    reply_to_text=message_data.get("reply_to_text"),
+                    reply_to_username=message_data.get("reply_to_username")
                 )
                 # Save to DB asynchronously (don't wait - fire and forget)
                 if db is not None:
@@ -701,6 +781,57 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
                 }
                 await manager.send_personal_message(delete_msg, message_data["to_user_id"])
                 await manager.send_personal_message(delete_msg, message_data["from_user_id"])
+
+            elif msg_type == "edit-message":
+                # Edit message
+                if db is not None:
+                    asyncio.create_task(db.messages.update_one(
+                        {"id": message_data["message_id"]},
+                        {"$set": {"message": message_data["new_message"], "edited_at": datetime.now(timezone.utc).isoformat()}}
+                    ))
+                # Notify both users
+                edit_msg = {
+                    "type": "edit-message",
+                    "message_id": message_data["message_id"],
+                    "new_message": message_data["new_message"],
+                    "edited_at": datetime.now(timezone.utc).isoformat()
+                }
+                await manager.send_personal_message(edit_msg, message_data["to_user_id"])
+                await manager.send_personal_message(edit_msg, message_data["from_user_id"])
+
+            elif msg_type == "react-message":
+                # Add/remove reaction
+                if db is not None:
+                    message = await db.messages.find_one({"id": message_data["message_id"]})
+                    if message:
+                        reactions = message.get("reactions", {})
+                        emoji = message_data["emoji"]
+                        reactor_id = message_data["user_id"]
+                        
+                        if emoji not in reactions:
+                            reactions[emoji] = []
+                        
+                        # Toggle reaction
+                        if reactor_id in reactions[emoji]:
+                            reactions[emoji].remove(reactor_id)
+                            if not reactions[emoji]:
+                                del reactions[emoji]
+                        else:
+                            reactions[emoji].append(reactor_id)
+                        
+                        asyncio.create_task(db.messages.update_one(
+                            {"id": message_data["message_id"]},
+                            {"$set": {"reactions": reactions}}
+                        ))
+                        
+                        # Notify both users
+                        reaction_msg = {
+                            "type": "message-reaction",
+                            "message_id": message_data["message_id"],
+                            "reactions": reactions
+                        }
+                        await manager.send_personal_message(reaction_msg, message_data["to_user_id"])
+                        await manager.send_personal_message(reaction_msg, message_data["from_user_id"])
 
             # WebRTC Signaling
             elif msg_type == "call-user":

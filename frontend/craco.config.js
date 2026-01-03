@@ -68,10 +68,22 @@ const webpackConfig = {
       return webpackConfig;
     },
   },
+  jest: {
+    configure: {
+      moduleNameMapper: {
+        "^@/(.*)$": "<rootDir>/src/$1"
+      },
+      transformIgnorePatterns: [
+        "/node_modules/(?!axios|lucide-react|framer-motion)/"
+      ]
+    }
+  }
 };
+
 
 // Only add babel metadata plugin during dev server
 if (config.enableVisualEdits && babelMetadataPlugin) {
+
   webpackConfig.babel = {
     plugins: [babelMetadataPlugin],
   };

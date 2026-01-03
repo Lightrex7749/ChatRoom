@@ -37,30 +37,30 @@ export const JoinScreen = ({ onJoin }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#efeae2] via-[#f0f2f5] to-[#e5ddd5] dark:from-[#0b141a] dark:via-[#111b21] dark:to-[#0b141a]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full max-w-md"
       >
-        <div className="glass rounded-3xl shadow-2xl p-6 sm:p-8 space-y-8">
+        <div className="bg-white dark:bg-[#202c33] rounded-3xl shadow-2xl p-8 sm:p-10 space-y-8 border border-gray-100 dark:border-gray-700">
           {/* Logo & Title */}
           <div className="text-center space-y-4">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg"
+              className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-[#008069] via-[#00a884] to-[#00bfa5] shadow-2xl ring-4 ring-white/20"
             >
-              <Video className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+              <MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
             </motion.div>
             
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+              className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#008069] via-[#00a884] to-[#00bfa5] bg-clip-text text-transparent"
             >
               ConnectHub
             </motion.h1>
@@ -69,9 +69,9 @@ export const JoinScreen = ({ onJoin }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-sm sm:text-base text-gray-600 dark:text-gray-300 px-2"
+              className="text-base text-gray-600 dark:text-gray-300 font-medium"
             >
-              {isLogin ? "Welcome back!" : "Create an account to get started"}
+              {isLogin ? "Welcome back! Sign in to continue" : "Create an account to get started"}
             </motion.p>
           </div>
 
@@ -91,7 +91,7 @@ export const JoinScreen = ({ onJoin }) => {
                   placeholder="Username"
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                  className="pl-10 h-12 text-base rounded-xl border-2 focus:border-blue-500 dark:bg-gray-800/50 dark:border-gray-700"
+                  className="pl-10 h-12 text-base rounded-xl border-2 focus:border-[#008069] dark:bg-[#2a3942] dark:border-gray-700"
                   required
                 />
               </div>
@@ -103,7 +103,7 @@ export const JoinScreen = ({ onJoin }) => {
                   placeholder="Password"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="pl-10 h-12 text-base rounded-xl border-2 focus:border-blue-500 dark:bg-gray-800/50 dark:border-gray-700"
+                  className="pl-10 h-12 text-base rounded-xl border-2 focus:border-[#008069] dark:bg-[#2a3942] dark:border-gray-700"
                   required
                 />
               </div>
@@ -122,7 +122,7 @@ export const JoinScreen = ({ onJoin }) => {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 text-base font-semibold rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full h-12 text-base font-semibold rounded-xl bg-[#008069] hover:bg-[#017561] shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {loading ? (
                 "Please wait..."
@@ -138,7 +138,7 @@ export const JoinScreen = ({ onJoin }) => {
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm text-[#008069] dark:text-[#00a884] hover:underline"
               >
                 {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
               </button>

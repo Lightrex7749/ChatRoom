@@ -20,48 +20,43 @@ export const Header = ({ user, onLeave, isConnected }) => {
   }, [isConnected, lastConnectedState]);
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-white via-white/95 to-white/90 dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-800/90 backdrop-blur-md shadow-sm" data-testid="app-header">
+    <header className="bg-gradient-to-r from-[#008069] via-[#00a884] to-[#008069] dark:from-[#1f2c33] dark:via-[#2a3942] dark:to-[#1f2c33] shadow-lg backdrop-blur-sm" data-testid="app-header">
       <div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo & Title */}
         <motion.div 
-          className="flex items-center space-x-2 sm:space-x-3 min-w-0"
+          className="flex items-center space-x-3 min-w-0"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
-            <span className="text-white font-bold text-sm sm:text-lg">CH</span>
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-gradient-to-br dark:from-gray-600 dark:to-gray-800 flex items-center justify-center shadow-lg ring-2 ring-white/20">
+            <span className="text-2xl sm:text-3xl">💬</span>
           </div>
           <div className="min-w-0">
-            <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate">
+            <h1 className="text-lg sm:text-xl font-bold text-white truncate tracking-wide">
               ConnectHub
             </h1>
-            <div className="flex items-center space-x-1.5">
-              <motion.div 
-                animate={{ scale: isConnected ? 1.2 : 1 }}
-                transition={{ duration: 0.3 }}
-                className={`w-2 h-2 rounded-full ${
-                  isConnected ? "bg-green-500 shadow-lg shadow-green-500/50" : "bg-red-500"
-                }`} 
-              />
-              <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                {isConnected ? "Live" : "Offline"}
-              </span>
-            </div>
+            {isConnected && (
+              <div className="flex items-center space-x-1.5">
+                <div className="w-2 h-2 rounded-full bg-green-300 animate-pulse shadow-sm shadow-green-500/50" />
+                <span className="text-xs text-green-50 font-medium">online</span>
+              </div>
+            )}
           </div>
         </motion.div>
 
         {/* User Info & Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           {/* Offline Messages Notification */}
           <OfflineMessages user={user} />
 
-          <div className="hidden sm:flex items-center space-x-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-              <span className="text-white text-sm font-semibold">
+          {/* User Profile - Mobile & Desktop */}
+          <div className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-all duration-200 cursor-pointer backdrop-blur-sm border border-white/10">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white to-gray-100 dark:from-gray-600 dark:to-gray-800 flex items-center justify-center shadow-md ring-2 ring-white/20">
+              <span className="text-[#008069] dark:text-white text-sm font-bold">
                 {user.username[0].toUpperCase()}
               </span>
             </div>
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+            <span className="hidden sm:block text-sm font-semibold text-white truncate max-w-[120px]">
               {user.username}
             </span>
           </div>
@@ -72,7 +67,7 @@ export const Header = ({ user, onLeave, isConnected }) => {
             onClick={toggleTheme}
             variant="ghost"
             size="icon"
-            className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="rounded-full hover:bg-white/20 text-white"
           >
             <motion.div
               initial={false}
@@ -93,7 +88,7 @@ export const Header = ({ user, onLeave, isConnected }) => {
             onClick={onLeave}
             variant="ghost"
             size="icon"
-            className="rounded-full hover:bg-red-100 dark:hover:bg-red-900 text-red-600 dark:text-red-400"
+            className="rounded-full hover:bg-white/20 text-white"
           >
             <LogOut className="w-5 h-5" />
           </Button>

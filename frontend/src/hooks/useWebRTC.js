@@ -22,14 +22,31 @@ export const useWebRTC = (user, sendMessage) => {
   const setupMediaStream = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
+        video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        }
       });
       setLocalStream(stream);
       return stream;
     } catch (error) {
       console.error("Error accessing media devices:", error);
-      alert("Unable to access camera/microphone. Please grant permissions.");
+      
+      // Provide specific error messages
+      let errorMessage = "Unable to access camera/microphone. ";
+      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+        errorMessage += "Please allow camera and microphone permissions in your browser settings and try again.";
+      } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
+        errorMessage += "No camera or microphone found on your device.";
+      } else if (error.name === "NotReadableError" || error.name === "TrackStartError") {
+        errorMessage += "Camera or microphone is already in use by another application. Please close other apps and try again.";
+      } else {
+        errorMessage += "Please check your device settings and browser permissions.";
+      }
+      
+      alert(errorMessage);
       throw error;
     }
   }, []);
