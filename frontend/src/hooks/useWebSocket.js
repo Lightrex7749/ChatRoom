@@ -27,7 +27,6 @@ export const useWebSocket = (user) => {
       ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
-          console.log("[WebSocket.onmessage] Received message type:", data.type);
           
           switch (data.type) {
             case "users-update":
@@ -35,17 +34,6 @@ export const useWebSocket = (user) => {
               break;
               
             case "receive-message":
-              console.log("Received message:", data.message);
-              console.log("Message type:", data.message?.type);
-              console.log("Message call_status:", data.message?.call_status);
-              if (data.message?.type === "call-log") {
-                console.log("[CALL-LOG] Received call-log message:", {
-                  from: data.message.from_username,
-                  to: data.message.to_user_id,
-                  status: data.message.call_status,
-                  timestamp: data.message.timestamp
-                });
-              }
               setMessages(prev => [...prev, data.message]);
               break;
               
@@ -103,25 +91,20 @@ export const useWebSocket = (user) => {
 
             case "call-ended":
               // Handle call-ended directly to ensure it always works
-              console.log("[WEBSOCKET-CALL-ENDED] Received call-ended message, triggering handler");
               let callEndedHandled = false;
               
               // Try handler first
               if (window.webrtcHandlers && window.webrtcHandlers["call-ended"]) {
-                console.log("[WEBSOCKET-CALL-ENDED] Calling call-ended handler from window.webrtcHandlers");
                 window.webrtcHandlers["call-ended"](data);
                 callEndedHandled = true;
               } else if (messageHandlersRef.current["call-ended"]) {
-                console.log("[WEBSOCKET-CALL-ENDED] Calling call-ended handler from messageHandlersRef");
                 messageHandlersRef.current["call-ended"](data);
                 callEndedHandled = true;
               }
               
               // Emergency fallback: if handler wasn't found/called, directly invoke endCall
               if (!callEndedHandled) {
-                console.log("[WEBSOCKET-CALL-ENDED] Handler not found! Attempting emergency endCall...");
                 if (window.webrtcEndCall) {
-                  console.log("[WEBSOCKET-CALL-ENDED] Calling window.webrtcEndCall(true) directly");
                   window.webrtcEndCall(true); // true = skipNotify, don't send message back
                 } else {
                   console.error("[WEBSOCKET-CALL-ENDED] CRITICAL: No handler and no window.webrtcEndCall!");
@@ -131,18 +114,10 @@ export const useWebSocket = (user) => {
               
             default:
               // Pass to WebRTC handler
-              console.log("[WebSocket] Received message type:", data.type);
-              console.log("[WebSocket] Checking handlers - messageHandlersRef:", Object.keys(messageHandlersRef.current));
-              console.log("[WebSocket] Checking handlers - window.webrtcHandlers:", window.webrtcHandlers ? Object.keys(window.webrtcHandlers) : "NOT SET");
-              
-              // Check both messageHandlersRef and window.webrtcHandlers
               const handler = messageHandlersRef.current[data.type] || (window.webrtcHandlers && window.webrtcHandlers[data.type]);
               
               if (handler) {
-                console.log(`[WebSocket] Calling handler for type: ${data.type}`);
                 handler(data);
-              } else {
-                console.log(`[WebSocket] No handler registered for type: ${data.type}`);
               }
               break;
           }
@@ -188,7 +163,6 @@ export const useWebSocket = (user) => {
   useEffect(() => {
     const syncHandlers = () => {
       if (window.webrtcHandlers) {
-        console.log("[WebSocket] Syncing handlers from window.webrtcHandlers");
         messageHandlersRef.current = { ...window.webrtcHandlers };
       }
     };

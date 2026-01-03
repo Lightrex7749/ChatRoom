@@ -61,12 +61,6 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
            (m.from_user_id === selectedUser.id && m.to_user_id === currentUser.id)
     );
     
-    // Log any call-log messages in realtime
-    const callLogs = realtimeMessages.filter(m => m.type === "call-log");
-    if (callLogs.length > 0) {
-      console.log("[CHAT-WINDOW] Found call-log messages in realtime:", callLogs);
-    }
-    
     // Combine history with realtime, remove duplicates by id
     const allMessages = [...historyMessages, ...realtimeMessages];
     const uniqueMessages = allMessages.reduce((acc, msg) => {
@@ -81,8 +75,6 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
       new Date(a.timestamp) - new Date(b.timestamp)
     );
     
-    console.log("Filtered messages:", sorted);
-    console.log("Total messages:", sorted.length, "Call-logs:", sorted.filter(m => m.type === "call-log").length);
     return sorted;
   }, [historyMessages, messages, currentUser.id, selectedUser.id]);
 
