@@ -321,7 +321,7 @@ class Message(BaseModel):
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     from_user_id: str
-    from_username: str
+    from_username: str = ""
     to_user_id: str
     message: str
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
@@ -335,6 +335,9 @@ class Message(BaseModel):
     reply_to_id: str | None = None  # ID of message being replied to
     reply_to_text: str | None = None  # Original message text
     reply_to_username: str | None = None  # Original sender username
+    type: str | None = None  # "call-log" for call history
+    call_status: str | None = None  # "missed", "rejected", "completed"
+    duration: int | None = None  # call duration in seconds
 
 class MessageCreate(BaseModel):
     from_user_id: str
@@ -527,8 +530,8 @@ async def send_friend_request(req_data: FriendRequest):
     if not recipient:
         # Find user in active connections by username
         recipient_id = None
-        for user_id, username in manager.active_connections.items():
-            if username == req_data.to_username:
+        for user_id, user_info in manager.users.items():
+            if user_info.get("username") == req_data.to_username:
                 recipient_id = user_id
                 break
         
@@ -835,12 +838,36 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
 
             # WebRTC Signaling
             elif msg_type == "call-user":
-                call_msg = {
+                # Create call-started log message
+                call_started = Message(
+                    from_user_id=message_data["from_user_id"],
+                    from_username=message_data.get("from_username", ""),
+                    to_user_id=message_data["to_user_id"],
+                    message="",
+                    type="call-log",
+                    call_status="ongoing"
+                )
+                
+                logger.info(f"[CALL-USER] Creating call-started message: {call_started.model_dump()}")
+                
+                # Send call-started message to both users
+                call_started_msg = {
+                    "type": "receive-message",
+                    "message": call_started.model_dump()
+                }
+                logger.info(f"[CALL-USER] Sending call-started to receiver: {message_data['to_user_id']}")
+                await manager.send_personal_message(call_started_msg, message_data["to_user_id"])
+                logger.info(f"[CALL-USER] Sending call-started to caller: {message_data['from_user_id']}")
+                await manager.send_personal_message(call_started_msg, message_data["from_user_id"])
+                
+                # Also send incoming-call notification
+                incoming_msg = {
                     "type": "incoming-call",
                     "from_user_id": message_data["from_user_id"],
-                    "from_username": message_data["from_username"]
+                    "from_username": message_data["from_username"],
+                    "video_enabled": message_data.get("video_enabled", True)
                 }
-                await manager.send_personal_message(call_msg, message_data["to_user_id"])
+                await manager.send_personal_message(incoming_msg, message_data["to_user_id"])
 
             elif msg_type == "accept-call":
                 accept_msg = {
@@ -850,11 +877,40 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
                 await manager.send_personal_message(accept_msg, message_data["to_user_id"])
 
             elif msg_type == "reject-call":
+                # Save call log as rejected
+                call_log = Message(
+                    from_user_id=message_data["from_user_id"],
+                    from_username=message_data.get("from_username", ""),
+                    to_user_id=message_data["to_user_id"],
+                    message="",
+                    type="call-log",
+                    call_status="rejected"
+                )
+                
+                logger.info(f"[REJECT-CALL] Creating call log: {call_log.model_dump()}")
+                
+                # Save to DB
+                if db is not None:
+                    try:
+                        asyncio.create_task(db.messages.insert_one(call_log.model_dump()))
+                        logger.info(f"[REJECT-CALL] Saved to database")
+                    except Exception as e:
+                        logger.error(f"Error saving call log: {e}")
+                
                 reject_msg = {
                     "type": "call-rejected",
                     "from_user_id": message_data["from_user_id"]
                 }
                 await manager.send_personal_message(reject_msg, message_data["to_user_id"])
+                
+                # Send call log to both users
+                call_log_msg = {
+                    "type": "receive-message",
+                    "message": call_log.model_dump()
+                }
+                logger.info(f"[REJECT-CALL] Sending call log message to both users")
+                await manager.send_personal_message(call_log_msg, message_data["to_user_id"])
+                await manager.send_personal_message(call_log_msg, message_data["from_user_id"])
 
             elif msg_type == "offer":
                 offer_msg = {
@@ -881,11 +937,55 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str, username: str):
                 await manager.send_personal_message(ice_msg, message_data["to_user_id"])
 
             elif msg_type == "end-call":
+                # Get call duration if provided
+                duration = message_data.get("duration", 0)
+                
+                # Save call log as completed
+                call_log = Message(
+                    from_user_id=message_data["from_user_id"],
+                    from_username=message_data.get("from_username", ""),
+                    to_user_id=message_data["to_user_id"],
+                    message="",
+                    type="call-log",
+                    call_status="completed",
+                    duration=duration
+                )
+                
+                logger.info(f"[END-CALL] Creating call log: {call_log.model_dump()}")
+                
+                # Save to DB
+                if db is not None:
+                    try:
+                        asyncio.create_task(db.messages.insert_one(call_log.model_dump()))
+                        logger.info(f"[END-CALL] Saved to database")
+                    except Exception as e:
+                        logger.error(f"Error saving call log: {e}")
+                
+                # Send call-ended notification to BOTH users
                 end_msg = {
                     "type": "call-ended",
                     "from_user_id": message_data["from_user_id"]
                 }
-                await manager.send_personal_message(end_msg, message_data["to_user_id"])
+                remote_user_id = message_data["to_user_id"]
+                logger.info(f"[END-CALL] Attempting to send call-ended to user: {remote_user_id}")
+                logger.info(f"[END-CALL] Active connections: {list(manager.active_connections.keys())}")
+                logger.info(f"[END-CALL] Is remote user connected? {remote_user_id in manager.active_connections}")
+                
+                if remote_user_id in manager.active_connections:
+                    await manager.send_personal_message(end_msg, remote_user_id)
+                    logger.info(f"[END-CALL] Successfully sent call-ended to {remote_user_id}")
+                else:
+                    logger.warning(f"[END-CALL] Remote user {remote_user_id} is not connected")
+
+                
+                # Send call log to both users
+                call_log_msg = {
+                    "type": "receive-message",
+                    "message": call_log.model_dump()
+                }
+                logger.info(f"[END-CALL] Sending call log message to both users")
+                await manager.send_personal_message(call_log_msg, message_data["to_user_id"])
+                await manager.send_personal_message(call_log_msg, message_data["from_user_id"])
 
     except WebSocketDisconnect:
         manager.disconnect(user_id)

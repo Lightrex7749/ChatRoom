@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Bell, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import axios from "axios";
@@ -66,14 +66,15 @@ export const OfflineMessages = ({ user, onMessageSelect }) => {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileTap={{ scale: 0.95 }}
-        className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+        className="relative p-2 rounded-full hover:bg-white/20 transition-all duration-200 text-white"
+        title="Offline Messages"
       >
-        <Mail className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+        <Mail className="w-5 h-5" />
         {unreadCount > 0 && (
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"
+            className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center font-bold px-1 shadow-lg ring-2 ring-white/30"
           >
             {unreadCount > 9 ? "9+" : unreadCount}
           </motion.span>
@@ -81,14 +82,16 @@ export const OfflineMessages = ({ user, onMessageSelect }) => {
       </motion.button>
 
       {/* Dropdown Panel */}
-      {isOpen && unreadCount > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="absolute right-0 top-12 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto"
-        >
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+      <AnimatePresence>
+        {isOpen && unreadCount > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute right-0 top-14 w-80 sm:w-96 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[120] max-h-[32rem] overflow-hidden flex flex-col"
+          >
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-2">
               <Bell className="w-4 h-4 text-blue-500" />
               <h3 className="font-bold text-gray-900 dark:text-white">
@@ -124,8 +127,9 @@ export const OfflineMessages = ({ user, onMessageSelect }) => {
               </div>
             ))}
           </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -5,19 +5,19 @@ import { useWebRTC } from "@/hooks/useWebRTC";
 import UserList from "@/components/UserList";
 import ChatWindow from "@/components/ChatWindow";
 import CallUI from "@/components/CallUI";
-import Header from "@/components/Header";
+import { Header } from "@/components/Header";
 import FriendsPanel from "@/components/FriendsPanel";
-import OfflineMessages from "@/components/OfflineMessages";
 import { motion } from "framer-motion";
 
 export const ChatScreen = ({ user, onLeave }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { users, messages, sendMessage, typing, incomingCall, acceptCall: wsAcceptCall, rejectCall, isConnected, registerMessageHandler, deleteMessage } = useWebSocket(user);
+  const { users, messages, sendMessage, typing, incomingCall, acceptCall: wsAcceptCall, rejectCall, isConnected, registerMessageHandler, deleteMessage, markAsRead } = useWebSocket(user);
   const { 
     localStream, 
     remoteStream, 
     callState, 
+    callDuration,
     startCall, 
     acceptCall: rtcAcceptCall,
     endCall, 
@@ -37,17 +37,20 @@ export const ChatScreen = ({ user, onLeave }) => {
   }, [registerMessageHandler]);
 
   const handleAcceptCall = async () => {
+    // Create peer connection FIRST, then notify caller
+    // Use the video_enabled flag from the incoming call
+    const videoEnabled = incomingCall.video_enabled !== false;
+    await rtcAcceptCall(incomingCall.from_user_id, videoEnabled);
     await wsAcceptCall(incomingCall.from_user_id);
-    await rtcAcceptCall(incomingCall.from_user_id);
   };
 
   const handleRejectCall = () => {
     rejectCall(incomingCall.from_user_id);
   };
 
-  const handleStartCall = async () => {
+  const handleStartCall = async (videoEnabled = true) => {
     if (selectedUser) {
-      await startCall(selectedUser.id);
+      await startCall(selectedUser.id, videoEnabled);
     }
   };
 
@@ -81,12 +84,12 @@ export const ChatScreen = ({ user, onLeave }) => {
         </div>
 
         {/* Chat Window */}
-        <div className={`${selectedUser ? 'flex' : 'hidden lg:flex'} flex-1 flex-col relative`}>
+        <div className={`${selectedUser ? 'flex' : 'hidden lg:flex'} flex-1 flex-col relative overflow-hidden`}>
           {selectedUser ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex-1 flex flex-col"
+              className="flex-1 flex flex-col h-full"
             >
               <ChatWindow
                 currentUser={user}
@@ -96,6 +99,7 @@ export const ChatScreen = ({ user, onLeave }) => {
                 typing={typing}
                 onStartCall={handleStartCall}
                 onDeleteMessage={handleDeleteMessage}
+                onMarkAsRead={markAsRead}
                 onBack={() => setSelectedUser(null)}
               />
             </motion.div>
@@ -117,6 +121,7 @@ export const ChatScreen = ({ user, onLeave }) => {
           {(callState !== "idle" || incomingCall) && (
             <CallUI
               callState={callState}
+              callDuration={callDuration}
               incomingCall={incomingCall}
               localStream={localStream}
               remoteStream={remoteStream}

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X, ArrowLeft, Edit2, Camera, Reply } from "lucide-react";
+import { Send, Video, Phone, MoreVertical, Smile, Trash2, CheckCheck, Check, Paperclip, Image as ImageIcon, X, ArrowLeft, Edit2, Camera, Reply, Mic, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -11,7 +11,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000"
 
 const REACTION_EMOJIS = ['❤️', '👍', '😂', '😮', '😢', '🙏'];
 
-export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage, onBack }) => {
+export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage, typing, onStartCall, onDeleteMessage, onMarkAsRead, onBack }) => {
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -23,9 +23,17 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
   const [replyingTo, setReplyingTo] = useState(null); // {id, text, username}
   const [imagePreviewModal, setImagePreviewModal] = useState(null); // file object
   const [imageCaption, setImageCaption] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingDuration, setRecordingDuration] = useState(0);
+  const [showInputEmojiPicker, setShowInputEmojiPicker] = useState(false);
+  const [showMenuDropdown, setShowMenuDropdown] = useState(false);
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const fileInputRef = useRef(null);
+  const photoInputRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+  const recordingIntervalRef = useRef(null);
 
   // Load message history when selected user changes
   useEffect(() => {
@@ -34,6 +42,7 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
         const response = await axios.get(
           `${BACKEND_URL}/api/messages/${currentUser.id}/${selectedUser.id}`
         );
+        console.log("Loaded message history:", response.data);
         setHistoryMessages(response.data);
       } catch (error) {
         console.error("Error loading message history:", error);
@@ -52,6 +61,12 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
            (m.from_user_id === selectedUser.id && m.to_user_id === currentUser.id)
     );
     
+    // Log any call-log messages in realtime
+    const callLogs = realtimeMessages.filter(m => m.type === "call-log");
+    if (callLogs.length > 0) {
+      console.log("[CHAT-WINDOW] Found call-log messages in realtime:", callLogs);
+    }
+    
     // Combine history with realtime, remove duplicates by id
     const allMessages = [...historyMessages, ...realtimeMessages];
     const uniqueMessages = allMessages.reduce((acc, msg) => {
@@ -62,18 +77,44 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
     }, []);
     
     // Sort by timestamp
-    return uniqueMessages.sort((a, b) => 
+    const sorted = uniqueMessages.sort((a, b) => 
       new Date(a.timestamp) - new Date(b.timestamp)
     );
+    
+    console.log("Filtered messages:", sorted);
+    console.log("Total messages:", sorted.length, "Call-logs:", sorted.filter(m => m.type === "call-log").length);
+    return sorted;
   }, [historyMessages, messages, currentUser.id, selectedUser.id]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Only auto-scroll on new messages, not when loading history
+  const prevMessageCountRef = useRef(0);
   useEffect(() => {
-    scrollToBottom();
+    if (filteredMessages.length > prevMessageCountRef.current && prevMessageCountRef.current > 0) {
+      // New message arrived, scroll to bottom
+      scrollToBottom();
+    }
+    prevMessageCountRef.current = filteredMessages.length;
   }, [filteredMessages]);
+
+  // Initial scroll when chat opens
+  useEffect(() => {
+    if (selectedUser) {
+      setTimeout(() => scrollToBottom(), 100);
+      
+      // Mark unread messages from selected user as read
+      if (onMarkAsRead) {
+        filteredMessages.forEach(msg => {
+          if (!msg.read && msg.from_user_id === selectedUser.id) {
+            onMarkAsRead(msg.id, msg.from_user_id);
+          }
+        });
+      }
+    }
+  }, [selectedUser, filteredMessages, onMarkAsRead]);
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -283,10 +324,84 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
     }
   };
 
+  // Voice recording
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        audioChunksRef.current.push(event.data);
+      };
+
+      mediaRecorder.onstop = async () => {
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        const audioFile = new File([audioBlob], `voice-${Date.now()}.webm`, { type: 'audio/webm' });
+        
+        // Upload voice message
+        setUploading(true);
+        try {
+          const formData = new FormData();
+          formData.append("file", audioFile);
+          
+          const response = await axios.post(`${BACKEND_URL}/api/upload`, formData);
+          
+          onSendMessage({
+            type: "send-message",
+            from_user_id: currentUser.id,
+            from_username: currentUser.username,
+            to_user_id: selectedUser.id,
+            message: "🎤 Voice message",
+            file_url: response.data.file_url,
+            file_type: "audio",
+            file_name: response.data.file_name
+          });
+        } catch (error) {
+          console.error("Voice upload error:", error);
+          alert("Failed to send voice message");
+        } finally {
+          setUploading(false);
+        }
+
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      mediaRecorder.start();
+      setIsRecording(true);
+      setRecordingDuration(0);
+      
+      recordingIntervalRef.current = setInterval(() => {
+        setRecordingDuration(prev => prev + 1);
+      }, 1000);
+    } catch (error) {
+      console.error("Error starting recording:", error);
+      alert("Failed to access microphone");
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      if (recordingIntervalRef.current) {
+        clearInterval(recordingIntervalRef.current);
+      }
+    }
+  };
+
+  const insertEmoji = (emoji) => {
+    setInputMessage(prev => prev + emoji);
+    setShowInputEmojiPicker(false);
+  };
+
+  const commonEmojis = ['😊', '😂', '❤️', '👍', '🎉', '🔥', '💯', '🙏', '😍', '🤔', '👏', '✨', '💪', '🎊', '😎', '🥳'];
+
   return (
-    <div className="flex-1 flex flex-col bg-[#efeae2] dark:bg-[#0b141a] h-screen lg:h-auto relative">
+    <div className="flex flex-col bg-[#efeae2] dark:bg-[#0b141a] h-full w-full relative overflow-hidden">
       {/* WhatsApp-style background pattern */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5" style={{
+      <div className="absolute inset-0 opacity-10 dark:opacity-5 pointer-events-none" style={{
         backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23000000\' fill-opacity=\'0.4\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
         backgroundSize: '100px 100px'
       }} />
@@ -342,27 +457,80 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
           {/* Call Buttons */}
           <div className="flex items-center space-x-2">
             <Button
-              data-testid="video-call-button"
-              onClick={onStartCall}
+              data-testid="phone-call-button"
+              onClick={() => onStartCall(false)}
               variant="ghost"
               size="icon"
               className="rounded-full hover:bg-[#008069]/10 dark:hover:bg-[#008069]/20 text-[#008069] dark:text-[#00a884] transition-all duration-200"
+              title="Voice call"
+            >
+              <Phone className="w-5 h-5" />
+            </Button>
+            <Button
+              data-testid="video-call-button"
+              onClick={() => onStartCall(true)}
+              variant="ghost"
+              size="icon"
+              className="rounded-full hover:bg-[#008069]/10 dark:hover:bg-[#008069]/20 text-[#008069] dark:text-[#00a884] transition-all duration-200"
+              title="Video call"
             >
               <Video className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
-            >
-              <MoreVertical className="w-5 h-5" />
-            </Button>
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowMenuDropdown(!showMenuDropdown)}
+                className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+              >
+                <MoreVertical className="w-5 h-5" />
+              </Button>
+              {showMenuDropdown && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="absolute right-0 top-12 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50"
+                >
+                  <button
+                    onClick={() => {
+                      setShowMenuDropdown(false);
+                      // Add functionality here
+                    }}
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    View contact info
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowMenuDropdown(false);
+                      // Clear chat functionality
+                    }}
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    Clear messages
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowMenuDropdown(false);
+                      // Mute notifications
+                    }}
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    Mute notifications
+                  </button>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4" data-testid="messages-container">
+      <div className="flex-1 overflow-y-auto p-4 scrollbar-hide" data-testid="messages-container" style={{
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none'
+      }}>
+        <div className="space-y-4">
         <AnimatePresence>
           {filteredMessages.map((msg, index) => {
             const isOwn = msg.from_user_id === currentUser.id;
@@ -386,7 +554,31 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                     </Avatar>
                   )}
                   <div className="group relative">
-                    {msg.deleted ? (
+                    {msg.type === 'call-log' ? (
+                      // Call Log Message
+                      <div className="flex items-center space-x-2 px-4 py-2 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                        {msg.call_status === 'missed' ? (
+                          <Phone className="w-4 h-4 text-red-500" />
+                        ) : msg.call_status === 'rejected' ? (
+                          <Phone className="w-4 h-4 text-orange-500" />
+                        ) : (
+                          <Video className="w-4 h-4 text-green-500" />
+                        )}
+                        <div>
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            {msg.call_status === 'missed' ? '📞 Missed Call' : 
+                             msg.call_status === 'rejected' ? '📞 Call Rejected' : 
+                             msg.call_status === 'completed' ? '📞 Call Ended' :
+                             '📞 Call'}
+                          </p>
+                          {msg.duration && (
+                            <p className="text-xs text-gray-600 dark:text-gray-400">
+                              Duration: {Math.floor(msg.duration / 60)}:{(msg.duration % 60).toString().padStart(2, '0')}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ) : msg.deleted ? (
                       <div className="px-4 py-2 rounded-2xl bg-gray-100 dark:bg-gray-800 italic text-gray-500 dark:text-gray-400">
                         <p className="text-sm">Message deleted</p>
                       </div>
@@ -435,11 +627,22 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
                               />
                             </div>
                           )}
+                          {msg.file_url && msg.file_type === 'audio' && (
+                            <div className="mb-2 p-2 bg-white/20 dark:bg-black/20 rounded-lg">
+                              <audio 
+                                src={`${BACKEND_URL}${msg.file_url}`} 
+                                controls 
+                                className="w-full max-w-xs"
+                              />
+                            </div>
+                          )}
                           {msg.file_url && msg.file_type === 'file' && (
                             <div className="mb-2 p-2 bg-white/20 dark:bg-black/20 rounded-lg">
                               <a 
                                 href={`${BACKEND_URL}${msg.file_url}`} 
                                 download={msg.file_name}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="flex items-center space-x-2 hover:underline"
                               >
                                 <Paperclip className="w-4 h-4" />
@@ -556,7 +759,40 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
             );
           })}
         </AnimatePresence>
+
+        {/* Typing Indicator */}
+        {typing && typing[selectedUser?.id] && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="flex justify-start mt-4"
+          >
+            <div className="flex items-center space-x-2 px-4 py-2 rounded-2xl bg-gray-200 dark:bg-gray-700">
+              <div className="flex space-x-1">
+                <motion.div
+                  className="w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                />
+                <motion.div
+                  className="w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                />
+                <motion.div
+                  className="w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                />
+              </div>
+              <span className="text-xs text-gray-500 dark:text-gray-400">{selectedUser?.username} is typing...</span>
+            </div>
+          </motion.div>
+        )}
+
         <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Input Area */}
@@ -638,51 +874,99 @@ export const ChatWindow = ({ currentUser, selectedUser, messages, onSendMessage,
             onChange={handleFileSelect}
             className="hidden"
           />
-          {!editingMessage && (
+          <input
+            ref={photoInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileSelect}
+            className="hidden"
+          />
+          {!editingMessage && !isRecording && (
             <>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={() => photoInputRef.current?.click()}
+                className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0"
+                title="Quick photo"
+              >
+                <Camera className="w-5 h-5 text-gray-500" />
+              </Button>
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
                 onClick={() => fileInputRef.current?.click()}
                 className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0"
+                title="Attach file"
               >
                 <Paperclip className="w-5 h-5 text-gray-500" />
               </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex-shrink-0 hidden sm:flex"
-              >
-                <Smile className="w-5 h-5 text-gray-500" />
-              </Button>
             </>
           )}
-          <Input
-            data-testid="message-input"
-            type="text"
-            placeholder={editingMessage ? "Edit message..." : selectedFile ? "Add a caption..." : "Type a message..."}
-            value={editingMessage ? editingMessage.text : inputMessage}
-            onChange={(e) => editingMessage ? setEditingMessage({...editingMessage, text: e.target.value}) : handleInputChange(e)}
-            onBlur={!editingMessage ? handleStopTyping : undefined}
-            className="flex-1 rounded-full border-2 px-4 py-2 sm:py-3 text-sm sm:text-base focus:border-blue-500 dark:bg-gray-700/50"
-          />
-          <Button
-            data-testid="send-message-button"
-            type="submit"
-            disabled={editingMessage ? !editingMessage.text.trim() : ((!inputMessage.trim() && !selectedFile) || uploading)}
-            className="rounded-full bg-[#008069] hover:bg-[#017561] text-white shadow-md hover:shadow-lg transition-all duration-200 flex-shrink-0 h-10 w-10 sm:h-11 sm:w-11"
-            size="icon"
-          >
-            {uploading ? (
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            ) : editingMessage ? (
-              <Check className="w-4 h-4 sm:w-5 sm:h-5" />
-            ) : (
-              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-            )}
-          </Button>
+          
+          {isRecording ? (
+            <>
+              <div className="flex-1 flex items-center space-x-3 px-4 py-2 bg-red-50 dark:bg-red-900/20 rounded-full">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className="w-3 h-3 bg-red-500 rounded-full"
+                />
+                <span className="text-sm font-medium text-red-600 dark:text-red-400">
+                  {Math.floor(recordingDuration / 60)}:{(recordingDuration % 60).toString().padStart(2, '0')}
+                </span>
+              </div>
+              <Button
+                type="button"
+                onClick={stopRecording}
+                className="rounded-full bg-red-500 hover:bg-red-600 text-white flex-shrink-0 h-10 w-10 sm:h-11 sm:w-11"
+                size="icon"
+              >
+                <Square className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" />
+              </Button>
+            </>
+          ) : (
+            <>
+              <Input
+                data-testid="message-input"
+                type="text"
+                placeholder={editingMessage ? "Edit message..." : selectedFile ? "Add a caption..." : "Type a message..."}
+                value={editingMessage ? editingMessage.text : inputMessage}
+                onChange={(e) => editingMessage ? setEditingMessage({...editingMessage, text: e.target.value}) : handleInputChange(e)}
+                onBlur={!editingMessage ? handleStopTyping : undefined}
+                className="flex-1 rounded-full border-2 px-4 py-2 sm:py-3 text-sm sm:text-base focus:border-blue-500 dark:bg-gray-700/50"
+              />
+              {!editingMessage && !inputMessage.trim() && !selectedFile ? (
+                <Button
+                  type="button"
+                  onClick={startRecording}
+                  className="rounded-full bg-[#008069] hover:bg-[#017561] text-white shadow-md hover:shadow-lg transition-all duration-200 flex-shrink-0 h-10 w-10 sm:h-11 sm:w-11"
+                  size="icon"
+                  title="Record voice message"
+                >
+                  <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+              ) : (
+                <Button
+                  data-testid="send-message-button"
+                  type="submit"
+                  disabled={editingMessage ? !editingMessage.text.trim() : ((!inputMessage.trim() && !selectedFile) || uploading)}
+                  className="rounded-full bg-[#008069] hover:bg-[#017561] text-white shadow-md hover:shadow-lg transition-all duration-200 flex-shrink-0 h-10 w-10 sm:h-11 sm:w-11"
+                  size="icon"
+                >
+                  {uploading ? (
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : editingMessage ? (
+                    <Check className="w-4 h-4 sm:w-5 sm:h-5" />
+                  ) : (
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                  )}
+                </Button>
+              )}
+            </>
+          )}
         </form>
       </div>
 

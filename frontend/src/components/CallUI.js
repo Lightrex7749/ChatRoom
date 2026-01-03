@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 
 export const CallUI = ({
   callState,
+  callDuration,
   incomingCall,
   localStream,
   remoteStream,
@@ -20,6 +21,13 @@ export const CallUI = ({
 }) => {
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
+
+  // Format duration as MM:SS
+  const formatDuration = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   useEffect(() => {
     if (localVideoRef.current && localStream) {
@@ -72,7 +80,7 @@ export const CallUI = ({
                   {incomingCall.from_username}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  wants to video chat with you
+                  {incomingCall.video_enabled !== false ? 'wants to video chat with you' : 'wants to voice call with you'}
                 </p>
               </div>
 
@@ -103,7 +111,7 @@ export const CallUI = ({
   }
 
   // Active call UI
-  if (callState === "calling" || callState === "ringing" || callState === "active") {
+  if (callState === "calling" || callState === "connecting" || callState === "active") {
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -118,8 +126,8 @@ export const CallUI = ({
             <h3 className="text-lg font-semibold">{callerName}</h3>
             <p className="text-sm text-gray-300">
               {callState === "calling" && "Calling..."}
-              {callState === "ringing" && "Connecting..."}
-              {callState === "active" && "Connected"}
+              {callState === "connecting" && "Connecting..."}
+              {callState === "active" && formatDuration(callDuration)}
             </p>
           </div>
           <Button
