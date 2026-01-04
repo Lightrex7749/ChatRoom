@@ -32,6 +32,7 @@ export const useWebRTC = (user, sendMessage) => {
   const timerIntervalRef = useRef(null);
   const offerRef = useRef(null);
   const isCallActiveRef = useRef(false);
+  const incomingCandidatesRef = useRef([]); // Buffer for early ICE candidates
 
   // Setup media stream
   const setupMediaStream = useCallback(async (videoEnabled = true) => {
@@ -202,76 +203,108 @@ export const useWebRTC = (user, sendMessage) => {
     }
   }, [setupMediaStream, createPeerConnection]);
 
-  // Handle incoming offer
-  const handleOffer = useCallback(async (data) => {
-    console.log("Received offer", data);
-    
-    // Defensive: Ensure we know who sent this, for ICE candidates
-    if (data.from_user_id) {
-        remoteUserIdRef.current = data.from_user_id;
-    }
-
-    if (!peerConnectionRef.current) {
-      console.error("No peer connection when receiving offer");
-      return;
-    }
-
-    try {
-      console.log("Setting remote description (Offer)...");
-      await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.offer));
-      console.log("Creating answer...");
-      const answer = await peerConnectionRef.current.createAnswer();
-      await peerConnectionRef.current.setLocalDescription(answer);
-
-      console.log("Sending answer...");
-      sendMessage({
-        type: "answer",
-        answer: answer,
-        from_user_id: user.id,
-        to_user_id: data.from_user_id
-      });
+    // Handle incoming offer
+    const handleOffer = useCallback(async (data) => {
+      console.log("Received offer", data);
       
-      console.log("Sent answer to caller");
-    } catch (error) {
-      console.error("Error handling offer:", error);
-    }
-  }, [sendMessage, user]);
+      // Defensive: Ensure we know who sent this, for ICE candidates
+      if (data.from_user_id) {
+          remoteUserIdRef.current = data.from_user_id;
+      }
+  
+      if (!peerConnectionRef.current) {
+        console.error("No peer connection when receiving offer");
+        return;
+      }
+  
+      try {
+        console.log("Setting remote description (Offer)...");
+        await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.offer));
+        
+        // Process any buffered ICE candidates
+        if (incomingCandidatesRef.current.length > 0) {
+          console.log(`Processing ${incomingCandidatesRef.current.length} buffered ICE candidates`);
+          for (const candidate of incomingCandidatesRef.current) {
+            try {
+              await peerConnectionRef.current.addIceCandidate(new RTCIceCandidate(candidate));
+            } catch (e) {
+              console.error("Error adding buffered candidate:", e);
+            }
+          }
+          incomingCandidatesRef.current = [];
+        }
+        
+        console.log("Creating answer...");
+        const answer = await peerConnectionRef.current.createAnswer();
+        await peerConnectionRef.current.setLocalDescription(answer);
+  
+        console.log("Sending answer...");
+        sendMessage({
+          type: "answer",
+          answer: answer,
+          from_user_id: user.id,
+          to_user_id: data.from_user_id
+        });
+        
+        console.log("Sent answer to caller");
+      } catch (error) {
+        console.error("Error handling offer:", error);
+      }
+    }, [sendMessage, user]);
+  
+    // Handle incoming answer
+    const handleAnswer = useCallback(async (data) => {
+      console.log("Received answer", data);
+      
+      if (!peerConnectionRef.current) {
+        console.error("No peer connection when receiving answer");
+        return;
+      }
+  
+      try {
+        console.log("Setting remote description (Answer)...");
+        await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
+        
+        // Process any buffered ICE candidates that arrived before the answer
+        if (incomingCandidatesRef.current.length > 0) {
+          console.log(`Processing ${incomingCandidatesRef.current.length} buffered ICE candidates (after Answer)`);
+          for (const candidate of incomingCandidatesRef.current) {
+            try {
+              await peerConnectionRef.current.addIceCandidate(new RTCIceCandidate(candidate));
+            } catch (e) {
+              console.error("Error adding buffered candidate:", e);
+            }
+          }
+          incomingCandidatesRef.current = [];
+        }
 
-  // Handle incoming answer
-  const handleAnswer = useCallback(async (data) => {
-    console.log("Received answer", data);
-    
-    if (!peerConnectionRef.current) {
-      console.error("No peer connection when receiving answer");
-      return;
-    }
-
-    try {
-      console.log("Setting remote description (Answer)...");
-      await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
-      console.log("Answer processed, connection should be establishing. Current state:", peerConnectionRef.current.connectionState);
-    } catch (error) {
-      console.error("Error handling answer:", error);
-    }
-  }, []);
-
-  // Handle ICE candidate
-  const handleIceCandidate = useCallback(async (data) => {
-    console.log("Received ICE candidate");
-    
-    if (!peerConnectionRef.current) {
-      console.error("No peer connection when receiving ICE candidate");
-      return;
-    }
-
-    try {
-      await peerConnectionRef.current.addIceCandidate(new RTCIceCandidate(data.candidate));
-      console.log("ICE candidate added");
-    } catch (error) {
-      console.error("Error handling ICE candidate:", error);
-    }
-  }, []);
-
+        console.log("Answer processed, connection should be establishing. Current state:", peerConnectionRef.current.connectionState);
+      } catch (error) {
+        console.error("Error handling answer:", error);
+      }
+    }, []);
+  
+    // Handle ICE candidate
+    const handleIceCandidate = useCallback(async (data) => {
+      console.log("Received ICE candidate");
+      
+      // Check if PC exists AND if remote description is set
+      const pc = peerConnectionRef.current;
+      const canAddCandidate = pc && pc.remoteDescription && pc.remoteDescription.type;
+      
+      if (!canAddCandidate) {
+        console.log("PC not ready (no remote description), buffering ICE candidate");
+        incomingCandidatesRef.current.push(data.candidate);
+        return;
+      }
+  
+      try {
+        await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+        console.log("ICE candidate added");
+      } catch (error) {
+        console.error("Error handling ICE candidate:", error);
+      }
+    }, []);
   // End call (defined first so other handlers can use it)
   const endCall = useCallback((skipNotify = false) => {
     console.log("[endCall] Called with skipNotify:", skipNotify, "callState:", callState, "remoteUserId:", remoteUserIdRef.current);
@@ -330,6 +363,7 @@ export const useWebRTC = (user, sendMessage) => {
       remoteUserIdRef.current = null;
       setIsAudioEnabled(true);
       setIsVideoEnabled(true);
+      incomingCandidatesRef.current = [];
     }
   }, [localStream, callState, sendMessage, user]);
 
