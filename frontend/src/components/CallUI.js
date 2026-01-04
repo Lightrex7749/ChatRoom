@@ -146,13 +146,13 @@ export const CallUI = ({
         {/* Video Grid */}
         <div className="flex-1 relative p-4">
           {/* Remote Video (Full screen) or Placeholder */}
-          <div className="w-full h-full bg-gray-900 rounded-2xl overflow-hidden relative">
+          <div className="w-full h-full bg-black rounded-2xl overflow-hidden relative">
             {/* Always render video element for audio playback, hide if no video track */}
             <video
               ref={remoteVideoRef}
               autoPlay
               playsInline
-              className={`w-full h-full object-cover ${!hasRemoteVideo ? 'hidden' : ''}`}
+              className={`w-full h-full object-contain ${!hasRemoteVideo ? 'hidden' : ''}`}
               data-testid="remote-video"
             />
 

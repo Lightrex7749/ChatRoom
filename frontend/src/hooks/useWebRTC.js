@@ -206,16 +206,24 @@ export const useWebRTC = (user, sendMessage) => {
   const handleOffer = useCallback(async (data) => {
     console.log("Received offer", data);
     
+    // Defensive: Ensure we know who sent this, for ICE candidates
+    if (data.from_user_id) {
+        remoteUserIdRef.current = data.from_user_id;
+    }
+
     if (!peerConnectionRef.current) {
       console.error("No peer connection when receiving offer");
       return;
     }
 
     try {
+      console.log("Setting remote description (Offer)...");
       await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.offer));
+      console.log("Creating answer...");
       const answer = await peerConnectionRef.current.createAnswer();
       await peerConnectionRef.current.setLocalDescription(answer);
 
+      console.log("Sending answer...");
       sendMessage({
         type: "answer",
         answer: answer,
@@ -239,8 +247,9 @@ export const useWebRTC = (user, sendMessage) => {
     }
 
     try {
+      console.log("Setting remote description (Answer)...");
       await peerConnectionRef.current.setRemoteDescription(new RTCSessionDescription(data.answer));
-      console.log("Answer processed, connection should be establishing");
+      console.log("Answer processed, connection should be establishing. Current state:", peerConnectionRef.current.connectionState);
     } catch (error) {
       console.error("Error handling answer:", error);
     }
@@ -267,55 +276,61 @@ export const useWebRTC = (user, sendMessage) => {
   const endCall = useCallback((skipNotify = false) => {
     console.log("[endCall] Called with skipNotify:", skipNotify, "callState:", callState, "remoteUserId:", remoteUserIdRef.current);
     
-    // Clear timer
-    if (timerIntervalRef.current) {
-      clearInterval(timerIntervalRef.current);
-      timerIntervalRef.current = null;
-    }
-    
-    // Calculate call duration
-    let duration = 0;
-    if (callStartTimeRef.current) {
-      duration = Math.floor((Date.now() - callStartTimeRef.current) / 1000);
-      callStartTimeRef.current = null;
-    }
-    
-    // Stop local stream
-    if (localStream) {
-      console.log("[endCall] Stopping local stream tracks");
-      localStream.getTracks().forEach(track => track.stop());
-      setLocalStream(null);
-    }
+    try {
+      // Clear timer
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
+      
+      // Calculate call duration
+      let duration = 0;
+      if (callStartTimeRef.current) {
+        duration = Math.floor((Date.now() - callStartTimeRef.current) / 1000);
+        callStartTimeRef.current = null;
+      }
+      
+      // Stop local stream
+      if (localStream) {
+        console.log("[endCall] Stopping local stream tracks");
+        localStream.getTracks().forEach(track => {
+          try { track.stop(); } catch (e) { console.warn("Error stopping track:", e); }
+        });
+        setLocalStream(null);
+      }
 
-    // Close peer connection
-    if (peerConnectionRef.current) {
-      console.log("[endCall] Closing peer connection");
-      peerConnectionRef.current.close();
-      peerConnectionRef.current = null;
+      // Close peer connection
+      if (peerConnectionRef.current) {
+        console.log("[endCall] Closing peer connection");
+        try { peerConnectionRef.current.close(); } catch (e) { console.warn("Error closing PC:", e); }
+        peerConnectionRef.current = null;
+      }
+
+      isCallActiveRef.current = false;
+
+      // Notify remote user (only if we initiated the end, not if we received end-call)
+      if (!skipNotify && remoteUserIdRef.current && callState !== "idle") {
+        console.log("[endCall] Sending end-call message to remote user:", remoteUserIdRef.current, "duration:", duration);
+        sendMessage({
+          type: "end-call",
+          from_user_id: user.id,
+          from_username: user.username,
+          to_user_id: remoteUserIdRef.current,
+          duration: duration
+        });
+      } else {
+        console.log("[endCall] Skipping notification - skipNotify:", skipNotify, "remoteUserId:", remoteUserIdRef.current, "callState:", callState);
+      }
+    } catch (error) {
+      console.error("[endCall] Critical error during cleanup:", error);
+    } finally {
+      setRemoteStream(null);
+      setCallState("idle");
+      setCallDuration(0);
+      remoteUserIdRef.current = null;
+      setIsAudioEnabled(true);
+      setIsVideoEnabled(true);
     }
-
-    isCallActiveRef.current = false;
-
-    // Notify remote user (only if we initiated the end, not if we received end-call)
-    if (!skipNotify && remoteUserIdRef.current && callState !== "idle") {
-      console.log("[endCall] Sending end-call message to remote user:", remoteUserIdRef.current, "duration:", duration);
-      sendMessage({
-        type: "end-call",
-        from_user_id: user.id,
-        from_username: user.username,
-        to_user_id: remoteUserIdRef.current,
-        duration: duration
-      });
-    } else {
-      console.log("[endCall] Skipping notification - skipNotify:", skipNotify, "remoteUserId:", remoteUserIdRef.current, "callState:", callState);
-    }
-
-    setRemoteStream(null);
-    setCallState("idle");
-    setCallDuration(0);
-    remoteUserIdRef.current = null;
-    setIsAudioEnabled(true);
-    setIsVideoEnabled(true);
   }, [localStream, callState, sendMessage, user]);
 
   // Handle call accepted
